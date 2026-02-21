@@ -1,5 +1,8 @@
+using System;
 using System.Windows;
+using System.Windows.Media;
 using Animals;
+using BirthingRooms;
 using BoothItems;
 using People;
 using Zoos;
@@ -29,6 +32,8 @@ namespace ZooScenario
 
             // Create the Como Zoo.
             this.comoZoo = this.CreateComoZoo();
+
+            this.ConfigureBirthingRoomControls();
         }
 
         /// <summary>
@@ -43,6 +48,9 @@ namespace ZooScenario
 
             // Create the zoo.
             Zoo zoo = new Zoo("Como Zoo", 1000, 4, 0.75m, 15.00m, 3.00m, 3640.25m, sam, flora);
+
+            // Set the birthing room temperature to its starting value.
+            zoo.BirthingRoomTemperature = 77;
 
             // Create and add animals.
             Dingo dpierre = new Dingo("Pierre", 3, 25.2);
@@ -91,6 +99,18 @@ namespace ZooScenario
         }
 
         /// <summary>
+        /// Updates the temperature border height, label, and color to reflect the current birthing room temperature.
+        /// </summary>
+        private void ConfigureBirthingRoomControls()
+        {
+            this.temperatureBorder.Height = this.comoZoo.BirthingRoomTemperature * 2;
+            this.temperatureLabel.Content = string.Format("{0:0.0} °F", this.comoZoo.BirthingRoomTemperature);
+
+            double colorLevel = ((this.comoZoo.BirthingRoomTemperature - BirthingRoom.MinTemperature) * 255) / (BirthingRoom.MaxTemperature - BirthingRoom.MinTemperature);
+            this.temperatureBorder.Background = new SolidColorBrush(Color.FromRgb(Convert.ToByte(colorLevel), Convert.ToByte(255 - colorLevel), Convert.ToByte(255 - colorLevel)));
+        }
+
+        /// <summary>
         /// Admits a guest to the zoo.
         /// </summary>
         /// <param name="sender">The object that initiated the event.</param>
@@ -122,6 +142,28 @@ namespace ZooScenario
 
             // Have Greg feed the ostrich.
             greg.FeedAnimal(ostrich, this.comoZoo.AnimalSnackMachine);
+        }
+
+        /// <summary>
+        /// Increases the birthing room temperature by 1 degree.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void increaseTempButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.comoZoo.BirthingRoomTemperature += 1;
+            this.ConfigureBirthingRoomControls();
+        }
+
+        /// <summary>
+        /// Decreases the birthing room temperature by 1 degree.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void decreaseTempButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.comoZoo.BirthingRoomTemperature -= 1;
+            this.ConfigureBirthingRoomControls();
         }
     }
 }

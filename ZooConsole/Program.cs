@@ -1,5 +1,4 @@
 using System;
-using System.Linq.Expressions;
 using Animals;
 using People;
 using Zoos;
@@ -38,15 +37,22 @@ namespace ZooConsole
                 command = Console.ReadLine();
                 command = command.ToLower().Trim();
 
-                switch (command)
+                string[] commandWords = command.Split();
+
+                if (commandWords.Length == 0)
+                {
+                    continue;
+                }
+
+                switch (commandWords[0])
                 {
                     case "exit":
                         exit = true;
                         break;
 
                     case "new":
-                        zoo = Zoo.NewZoo();
-                        Console.WriteLine("A new Como Zoo has been created.");
+                        zoo = NewZoo();
+                        zoo.BirthingRoomTemperature = 77;
                         break;
 
                     case "help":
@@ -54,19 +60,23 @@ namespace ZooConsole
                         Console.WriteLine("HELP: Shows a list of known commands.");
                         Console.WriteLine("EXIT: Exits the application.");
                         Console.WriteLine("NEW: Creates the ComoZoo.");
+                        Console.WriteLine("TEMP: Sets the birthing room temperature.");
                         break;
 
                     case "temp":
                         try
                         {
-                            // set the birthing room temperature
+                            double previousTemp = zoo.BirthingRoomTemperature;
                             zoo.BirthingRoomTemperature = double.Parse(commandWords[1]);
-                        };
-                        Catch (ArgumentOutOfRangeException ex)
-                            {
+                            Console.WriteLine($"Previous temperature: {previousTemp:0.0} °F.");
+                            Console.WriteLine($"New temperature: {zoo.BirthingRoomTemperature:0.0} °F.");
+                        }
+                        catch (Exception ex)
+                        {
                             Console.WriteLine(ex.Message);
                         }
 
+                        break;
 
                     default:
                         Console.WriteLine("Invalid command entered: " + command);

@@ -18,16 +18,6 @@ namespace BirthingRooms
         private readonly double initialTemperature = 77.0;
 
         /// <summary>
-        /// The minimum allowable temperature of the birthing room.
-        /// </summary>
-        private readonly double minTemperature = 35.0;
-
-        /// <summary>
-        /// The maximum allowable temperature of the birthing room.
-        /// </summary>
-        private readonly double maxTemperature = 95.0;
-
-        /// <summary>
         /// The current temperature of the birthing room.
         /// </summary>
         private double temperature;
@@ -60,7 +50,7 @@ namespace BirthingRooms
             set
             {
                 // If the value is in range...
-                if (value >= this.minTemperature && value <= this.maxTemperature)
+                if (value >= BirthingRoom.MinTemperature && value <= BirthingRoom.MaxTemperature)
                 {
                     this.temperature = value;
                 }

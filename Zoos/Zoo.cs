@@ -108,13 +108,18 @@ namespace Zoos
         }
 
         /// <summary>
-        /// Gets the temperature of the zoo's birthing room.
+        /// Gets or sets the temperature of the zoo's birthing room.
         /// </summary>
         public double BirthingRoomTemperature
         {
             get
             {
                 return this.b168.Temperature;
+            }
+
+            set
+            {
+                this.b168.Temperature = value;
             }
         }
 
