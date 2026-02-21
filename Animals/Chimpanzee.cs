@@ -1,0 +1,28 @@
+namespace Animals
+{
+    /// <summary>
+    /// The class which is used to represent a chimpanzee.
+    /// </summary>
+    public class Chimpanzee : Mammal
+    {
+        /// <summary>
+        /// Initializes a new instance of the Chimpanzee class.
+        /// </summary>
+        /// <param name="name">The name of the animal.</param>
+        /// <param name="age">The age of the animal.</param>
+        /// <param name="weight">The weight of the animal (in pounds).</param>
+        public Chimpanzee(string name, int age, double weight)
+            : base(name, age, weight)
+        {
+            this.BabyWeightPercentage = 10.0;
+        }
+
+        /// <summary>
+        /// Moves by climbing.
+        /// </summary>
+        public override void Move()
+        {
+            // Climb.
+        }
+    }
+}
