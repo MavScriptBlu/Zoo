@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Animals;
 using BirthingRooms;
 using BoothItems;
+using MoneyCollectors;
 using People;
 using Reproducers;
 using VendingMachines;
@@ -79,14 +80,14 @@ namespace Zoos
         public Zoo(string name, int capacity, int restroomCapacity, decimal animalFoodPrice, decimal ticketPrice, decimal waterBottlePrice, decimal boothMoneyBalance, Employee attendant, Employee vet)
         {
             this.animals = new List<Animal>();
-            this.animalSnackMachine = new VendingMachine(animalFoodPrice);
+            this.animalSnackMachine = new VendingMachine(animalFoodPrice, new MoneyBox());
             this.b168 = new BirthingRoom(vet);
             this.capacity = capacity;
             this.guests = new List<Guest>();
             this.ladiesRoom = new Restroom(restroomCapacity, Gender.Female);
             this.mensRoom = new Restroom(restroomCapacity, Gender.Male);
             this.name = name;
-            this.ticketBooth = new MoneyCollectingBooth(attendant, ticketPrice, waterBottlePrice);
+            this.ticketBooth = new MoneyCollectingBooth(attendant, ticketPrice, waterBottlePrice, new MoneyBox());
             this.ticketBooth.AddMoney(boothMoneyBalance);
             this.informationBooth = new GivingBooth(attendant);
         }

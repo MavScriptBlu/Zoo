@@ -21,7 +21,7 @@ namespace People
         /// <summary>
         /// The booth's internal money box.
         /// </summary>
-        private MoneyCollector moneyBox;
+        private IMoneyCollector moneyBox;
 
         /// <summary>
         /// Initializes a new instance of the MoneyCollectingBooth class.
@@ -29,12 +29,13 @@ namespace People
         /// <param name="attendant">The employee to be the booth's attendant.</param>
         /// <param name="ticketPrice">The price of a ticket.</param>
         /// <param name="waterBottlePrice">The price of a water bottle.</param>
-        public MoneyCollectingBooth(Employee attendant, decimal ticketPrice, decimal waterBottlePrice)
+        /// <param name="moneyBox">The money box to use for collecting money.</param>
+        public MoneyCollectingBooth(Employee attendant, decimal ticketPrice, decimal waterBottlePrice, IMoneyCollector moneyBox)
             : base(attendant)
         {
             this.ticketPrice = ticketPrice;
             this.waterBottlePrice = waterBottlePrice;
-            this.moneyBox = new MoneyCollector();
+            this.moneyBox = moneyBox;
 
             // Create tickets (5 total) and water bottles (5 total).
             for (int i = 0; i < 5; i++)

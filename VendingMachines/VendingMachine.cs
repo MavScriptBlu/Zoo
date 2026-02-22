@@ -32,16 +32,17 @@ namespace VendingMachines
         /// <summary>
         /// The vending machine's internal money box.
         /// </summary>
-        private MoneyCollector moneyBox;
+        private IMoneyCollector moneyBox;
 
         /// <summary>
         /// Initializes a new instance of the VendingMachine class.
         /// </summary>
         /// <param name="foodPrice">The price of food (per pound).</param>
-        public VendingMachine(decimal foodPrice)
+        /// <param name="moneyBox">The money box to use for collecting money.</param>
+        public VendingMachine(decimal foodPrice, IMoneyCollector moneyBox)
         {
             this.foodPricePerPound = foodPrice;
-            this.moneyBox = new MoneyCollector();
+            this.moneyBox = moneyBox;
 
             // Fill with an initial load of food.
             while (!this.IsFull())

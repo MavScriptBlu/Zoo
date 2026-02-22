@@ -3,7 +3,7 @@ namespace MoneyCollectors
     /// <summary>
     /// The class which is used to represent a money collector.
     /// </summary>
-    public class MoneyCollector
+    public abstract class MoneyCollector : IMoneyCollector
     {
         /// <summary>
         /// The amount of money currently in the money collector.
@@ -35,7 +35,7 @@ namespace MoneyCollectors
         /// </summary>
         /// <param name="amount">The amount of money to remove.</param>
         /// <returns>The money that was removed.</returns>
-        public decimal RemoveMoney(decimal amount)
+        public virtual decimal RemoveMoney(decimal amount)
         {
             decimal amountRemoved;
 

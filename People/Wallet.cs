@@ -15,7 +15,7 @@ namespace People
         /// <summary>
         /// The wallet's internal money pocket.
         /// </summary>
-        private MoneyCollector moneyPocket;
+        private IMoneyCollector moneyPocket;
 
         /// <summary>
         /// Initializes a new instance of the Wallet class.
@@ -24,7 +24,7 @@ namespace People
         public Wallet(WalletColor color)
         {
             this.color = color;
-            this.moneyPocket = new MoneyCollector();
+            this.moneyPocket = new MoneyPocket();
         }
 
         /// <summary>
