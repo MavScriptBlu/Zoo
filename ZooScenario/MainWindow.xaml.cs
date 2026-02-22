@@ -111,6 +111,14 @@ namespace ZooScenario
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("A number must be entered as a parameter.");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("A parameter must be entered for the temperature command.");
+            }
         }
 
         /// <summary>
@@ -128,6 +136,14 @@ namespace ZooScenario
             catch (ArgumentOutOfRangeException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("A number must be entered as a parameter.");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("A parameter must be entered for the temperature command.");
             }
         }
     }
