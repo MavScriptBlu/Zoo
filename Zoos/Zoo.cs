@@ -366,6 +366,7 @@ namespace Zoos
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Ostrich, "Oliver", 2, 250.0, Gender.Male));
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Shark, "Steve", 6, 500.0, Gender.Male));
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Squirrel, "Sammy", 1, 1.5, Gender.Female));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Dolly", 3, 22.0, Gender.Female));
 
             // Create guests.
             Guest greg = new Guest("Greg", 35, 20.00m, WalletColor.Brown, Gender.Male);
