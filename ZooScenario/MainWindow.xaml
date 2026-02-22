@@ -9,9 +9,9 @@
     <Grid>
         <Button Name="admitGuestButton" Content="Admit guest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Width="120" Height="30" Click="admitGuestButton_Click"/>
         <Button Name="feedAnimalButton" Content="Feed animal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,20,0,0" Width="120" Height="30" Click="feedAnimalButton_Click"/>
-        <Border x:Name="temperatureBorder" BorderBrush="Black" BorderThickness="1" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,60" Width="20" Height="100"/>
-        <Label x:Name="temperatureLabel" Content="Temp" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,62"/>
-        <RepeatButton x:Name="increaseTempButton" Content="+" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,35" Width="23" Height="23" Click="increaseTempButton_Click"/>
-        <RepeatButton x:Name="decreaseTempButton" Content="-" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="23" Height="23" Click="decreaseTempButton_Click"/>
+        <Border x:Name="temperatureBorder" BorderBrush="Black" BorderThickness="1" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="20" Height="100"/>
+        <Label x:Name="temperatureLabel" Content="Temp" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,32,66" RenderTransformOrigin="0.729,1.781"/>
+        <RepeatButton x:Name="increaseTempButton" Content="+" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,38" Width="23" Height="23" Click="increaseTempButton_Click"/>
+        <RepeatButton x:Name="decreaseTempButton" Content="-" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,10" Width="23" Height="23" Click="decreaseTempButton_Click" RenderTransformOrigin="-2.109,0.518"/>
     </Grid>
 </Window>
