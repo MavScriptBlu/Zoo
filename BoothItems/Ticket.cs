@@ -3,7 +3,7 @@ namespace BoothItems
     /// <summary>
     /// The class which is used to represent a ticket.
     /// </summary>
-    public class Ticket : Item
+    public class Ticket : SoldItem
     {
         /// <summary>
         /// A value indicating whether the ticket has been redeemed.

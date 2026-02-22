@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BoothItems;
 using Foods;
 using VendingMachines;
@@ -25,6 +26,11 @@ namespace People
         private Wallet wallet;
 
         /// <summary>
+        /// The guest's bag of items.
+        /// </summary>
+        private List<Item> bag;
+
+        /// <summary>
         /// Initializes a new instance of the Guest class.
         /// </summary>
         /// <param name="name">The name of the guest.</param>
@@ -37,6 +43,7 @@ namespace People
             this.name = name;
             this.wallet = new Wallet(walletColor);
             this.wallet.AddMoney(moneyBalance);
+            this.bag = new List<Item>();
         }
 
         /// <summary>
@@ -103,11 +110,11 @@ namespace People
         }
 
         /// <summary>
-        /// Visits the ticket booth to buy a ticket and other items.
+        /// Visits the ticket booth to buy a ticket and a water bottle.
         /// </summary>
         /// <param name="ticketBooth">The booth to visit.</param>
         /// <returns>The purchased ticket.</returns>
-        public Ticket VisitTicketBooth(Booth ticketBooth)
+        public Ticket VisitTicketBooth(MoneyCollectingBooth ticketBooth)
         {
             // Get the ticket price.
             decimal ticketPrice = ticketBooth.TicketPrice;
@@ -127,13 +134,27 @@ namespace People
             // Buy a water bottle.
             WaterBottle waterBottle = ticketBooth.SellWaterBottle(waterBottlePayment);
 
-            // Get a free map.
-            Map map = ticketBooth.GiveFreeMap();
-
-            // Get a free coupon book.
-            CouponBook couponBook = ticketBooth.GiveFreeCouponBook();
+            // Add water bottle to bag.
+            this.bag.Add(waterBottle);
 
             return ticket;
+        }
+
+        /// <summary>
+        /// Visits the information booth to receive free items.
+        /// </summary>
+        /// <param name="informationBooth">The booth to visit.</param>
+        public void VisitInformationBooth(GivingBooth informationBooth)
+        {
+            // Get a free map.
+            Map map = informationBooth.GiveFreeMap();
+
+            // Get a free coupon book.
+            CouponBook couponBook = informationBooth.GiveFreeCouponBook();
+
+            // Add items to bag.
+            this.bag.Add(map);
+            this.bag.Add(couponBook);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ namespace VendingMachines
     /// <summary>
     /// The class which is used to represent a vending machine.
     /// </summary>
-    public class VendingMachine : MoneyCollector
+    public class VendingMachine
     {
         /// <summary>
         /// The size of a bag of food used to refill the vending machine.
@@ -30,18 +30,54 @@ namespace VendingMachines
         private double foodStock;
 
         /// <summary>
+        /// The vending machine's internal money box.
+        /// </summary>
+        private MoneyCollector moneyBox;
+
+        /// <summary>
         /// Initializes a new instance of the VendingMachine class.
         /// </summary>
         /// <param name="foodPrice">The price of food (per pound).</param>
         public VendingMachine(decimal foodPrice)
         {
             this.foodPricePerPound = foodPrice;
+            this.moneyBox = new MoneyCollector();
 
             // Fill with an initial load of food.
             while (!this.IsFull())
             {
                 this.AddFoodBag();
             }
+        }
+
+        /// <summary>
+        /// Gets the money balance of the vending machine.
+        /// </summary>
+        public decimal MoneyBalance
+        {
+            get
+            {
+                return this.moneyBox.MoneyBalance;
+            }
+        }
+
+        /// <summary>
+        /// Adds a specified amount of money to the vending machine.
+        /// </summary>
+        /// <param name="amount">The amount of money to add.</param>
+        public void AddMoney(decimal amount)
+        {
+            this.moneyBox.AddMoney(amount);
+        }
+
+        /// <summary>
+        /// Removes a specified amount of money from the vending machine.
+        /// </summary>
+        /// <param name="amount">The amount of money to remove.</param>
+        /// <returns>The money that was removed.</returns>
+        public decimal RemoveMoney(decimal amount)
+        {
+            return this.moneyBox.RemoveMoney(amount);
         }
 
         /// <summary>

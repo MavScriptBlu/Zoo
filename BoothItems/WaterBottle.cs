@@ -3,7 +3,7 @@ namespace BoothItems
     /// <summary>
     /// The class which is used to represent a water bottle.
     /// </summary>
-    public class WaterBottle : Item
+    public class WaterBottle : SoldItem
     {
         /// <summary>
         /// The serial number of the water bottle.

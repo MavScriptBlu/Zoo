@@ -3,7 +3,7 @@ namespace MoneyCollectors
     /// <summary>
     /// The class which is used to represent a money collector.
     /// </summary>
-    public abstract class MoneyCollector
+    public class MoneyCollector
     {
         /// <summary>
         /// The amount of money currently in the money collector.

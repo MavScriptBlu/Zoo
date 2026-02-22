@@ -57,7 +57,12 @@ namespace Zoos
         /// <summary>
         /// The zoo's ticket booth.
         /// </summary>
-        private Booth ticketBooth;
+        private MoneyCollectingBooth ticketBooth;
+
+        /// <summary>
+        /// The zoo's information booth.
+        /// </summary>
+        private GivingBooth informationBooth;
 
         /// <summary>
         /// Initializes a new instance of the Zoo class.
@@ -81,8 +86,31 @@ namespace Zoos
             this.ladiesRoom = new Restroom(restroomCapacity, "Female");
             this.mensRoom = new Restroom(restroomCapacity, "Male");
             this.name = name;
-            this.ticketBooth = new Booth(attendant, ticketPrice, waterBottlePrice);
+            this.ticketBooth = new MoneyCollectingBooth(attendant, ticketPrice, waterBottlePrice);
             this.ticketBooth.AddMoney(boothMoneyBalance);
+            this.informationBooth = new GivingBooth(attendant);
+        }
+
+        /// <summary>
+        /// Gets all animals currently in the zoo.
+        /// </summary>
+        public IEnumerable<Animal> Animals
+        {
+            get
+            {
+                return this.animals;
+            }
+        }
+
+        /// <summary>
+        /// Gets all guests currently visiting the zoo.
+        /// </summary>
+        public IEnumerable<Guest> Guests
+        {
+            get
+            {
+                return this.guests;
+            }
         }
 
         /// <summary>
@@ -304,6 +332,9 @@ namespace Zoos
         {
             // Have the guest visit the ticket booth.
             Ticket ticket = guest.VisitTicketBooth(this.ticketBooth);
+
+            // Have the guest visit the information booth.
+            guest.VisitInformationBooth(this.informationBooth);
 
             return ticket;
         }

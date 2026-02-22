@@ -52,6 +52,26 @@ namespace ZooScenario
         {
             this.comoZoo = Zoo.NewZoo();
             this.ConfigureBirthingRoomControls();
+            this.PopulateAnimalListBox();
+            this.PopulateGuestListBox();
+        }
+
+        /// <summary>
+        /// Populates the animal list box with the zoo's animals.
+        /// </summary>
+        private void PopulateAnimalListBox()
+        {
+            this.animalListBox.ItemsSource = null;
+            this.animalListBox.ItemsSource = this.comoZoo.Animals;
+        }
+
+        /// <summary>
+        /// Populates the guest list box with the zoo's guests.
+        /// </summary>
+        private void PopulateGuestListBox()
+        {
+            this.guestListBox.ItemsSource = null;
+            this.guestListBox.ItemsSource = this.comoZoo.Guests;
         }
 
         /// <summary>
@@ -71,6 +91,9 @@ namespace ZooScenario
 
                 // Add the guest to the zoo.
                 this.comoZoo.AddGuest(ethel, ticket);
+
+                // Refresh the guest list.
+                this.PopulateGuestListBox();
             }
             catch (NullReferenceException ex)
             {
