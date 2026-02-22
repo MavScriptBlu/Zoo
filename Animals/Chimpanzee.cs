@@ -38,7 +38,7 @@ namespace Animals
         /// <param name="amount">The amount of money to add.</param>
         public void AddMoney(decimal amount)
         {
-            // Chimpanzees buy bananas with any money given to them.
+            // buy some bananas
         }
 
         /// <summary>
