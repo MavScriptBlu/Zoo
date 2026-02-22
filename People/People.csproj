@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Booth.cs" />
+    <Compile Include="GivingBooth.cs" />
+    <Compile Include="MoneyCollectingBooth.cs" />
     <Compile Include="WalletColor.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Guest.cs" />
