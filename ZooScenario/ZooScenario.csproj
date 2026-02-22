@@ -101,6 +101,10 @@
       <Project>{a1b2c3d4-1111-2222-3333-444455556666}</Project>
       <Name>Animals</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BirthingRooms\BirthingRooms.csproj">
+      <Project>{E5F6A7B8-5555-6666-7777-888899990000}</Project>
+      <Name>BirthingRooms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foods\Foods.csproj">
       <Project>{52A178AF-5C4D-42FC-9671-159639DA04C2}</Project>
       <Name>Foods</Name>
