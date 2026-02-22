@@ -83,8 +83,8 @@ namespace Zoos
             this.b168 = new BirthingRoom(vet);
             this.capacity = capacity;
             this.guests = new List<Guest>();
-            this.ladiesRoom = new Restroom(restroomCapacity, "Female");
-            this.mensRoom = new Restroom(restroomCapacity, "Male");
+            this.ladiesRoom = new Restroom(restroomCapacity, Gender.Female);
+            this.mensRoom = new Restroom(restroomCapacity, Gender.Male);
             this.name = name;
             this.ticketBooth = new MoneyCollectingBooth(attendant, ticketPrice, waterBottlePrice);
             this.ticketBooth.AddMoney(boothMoneyBalance);
@@ -356,20 +356,20 @@ namespace Zoos
             zoo.BirthingRoomTemperature = 77;
 
             // Create and add animals.
-            zoo.AddAnimal(new Dingo("Pierre", 3, 25.2));
-            zoo.AddAnimal(new Dingo("Jackie", 4, 35.3));
-            zoo.AddAnimal(new Platypus("Patty", 2, 15.5));
-            zoo.AddAnimal(new Hummingbird("Harold", 1, 0.5));
-            zoo.AddAnimal(new Chimpanzee("Charlie", 5, 90.0));
-            zoo.AddAnimal(new Eagle("Emily", 3, 12.5));
-            zoo.AddAnimal(new Kangaroo("Kevin", 4, 110.0));
-            zoo.AddAnimal(new Ostrich("Oliver", 2, 250.0));
-            zoo.AddAnimal(new Shark("Steve", 6, 500.0));
-            zoo.AddAnimal(new Squirrel("Sammy", 1, 1.5));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Pierre", 3, 25.2, Gender.Male));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Jackie", 4, 35.3, Gender.Female));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Platypus, "Patty", 2, 15.5, Gender.Female));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Hummingbird, "Harold", 1, 0.5, Gender.Male));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Chimpanzee, "Charlie", 5, 90.0, Gender.Male));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Eagle, "Emily", 3, 12.5, Gender.Female));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Kangaroo, "Kevin", 4, 110.0, Gender.Male));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Ostrich, "Oliver", 2, 250.0, Gender.Male));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Shark, "Steve", 6, 500.0, Gender.Male));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Squirrel, "Sammy", 1, 1.5, Gender.Female));
 
             // Create guests.
-            Guest greg = new Guest("Greg", 35, 20.00m, "Brown");
-            Guest darla = new Guest("Darla", 7, 25.25m, "Salmon");
+            Guest greg = new Guest("Greg", 35, 20.00m, WalletColor.Brown, Gender.Male);
+            Guest darla = new Guest("Darla", 7, 25.25m, WalletColor.Salmon, Gender.Female);
 
             // Sell tickets and add guests.
             zoo.AddGuest(greg, zoo.SellTicket(greg));

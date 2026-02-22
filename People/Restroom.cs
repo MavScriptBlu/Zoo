@@ -1,3 +1,5 @@
+using Reproducers;
+
 namespace People
 {
     /// <summary>
@@ -13,14 +15,14 @@ namespace People
         /// <summary>
         /// The gender of the restroom.
         /// </summary>
-        private string gender;
+        private Gender gender;
 
         /// <summary>
         /// Initializes a new instance of the Restroom class.
         /// </summary>
         /// <param name="capacity">The maximum number of people allowed in the restroom at a given time.</param>
         /// <param name="gender">The gender of the restroom.</param>
-        public Restroom(int capacity, string gender)
+        public Restroom(int capacity, Gender gender)
         {
             this.capacity = capacity;
             this.gender = gender;

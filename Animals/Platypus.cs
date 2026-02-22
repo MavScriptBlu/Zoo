@@ -14,8 +14,8 @@ namespace Animals
         /// <param name="name">The name of the animal.</param>
         /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
-        public Platypus(string name, int age, double weight)
-            : base(name, age, weight)
+        public Platypus(string name, int age, double weight, Gender gender)
+            : base(name, age, weight, gender)
         {
             this.BabyWeightPercentage = 12.0;
         }

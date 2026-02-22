@@ -1,3 +1,5 @@
+using Reproducers;
+
 namespace Animals
 {
     /// <summary>
@@ -11,8 +13,9 @@ namespace Animals
         /// <param name="name">The name of the animal.</param>
         /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
-        public Fish(string name, int age, double weight)
-            : base(name, age, weight)
+        /// <param name="gender">The gender of the animal.</param>
+        public Fish(string name, int age, double weight, Gender gender)
+            : base(name, age, weight, gender)
         {
         }
 

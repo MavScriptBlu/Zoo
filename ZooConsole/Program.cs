@@ -1,6 +1,4 @@
 using System;
-using Animals;
-using People;
 using Zoos;
 
 namespace ZooConsole
@@ -68,75 +66,11 @@ namespace ZooConsole
                         break;
 
                     case "temp":
-                        try
-                        {
-                            double previousTemp = zoo.BirthingRoomTemperature;
-                            zoo.BirthingRoomTemperature = double.Parse(commandWords[1]);
-                            Console.WriteLine($"Previous temperature: {previousTemp:0.0} °F.");
-                            Console.WriteLine($"New temperature: {zoo.BirthingRoomTemperature:0.0} °F.");
-                        }
-                        catch (ArgumentOutOfRangeException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("A number must be entered as a parameter.");
-                        }
-                        catch (IndexOutOfRangeException)
-                        {
-                            Console.WriteLine("A parameter must be entered for the temperature command.");
-                        }
-
+                        ConsoleHelper.SetTemperature(zoo, commandWords);
                         break;
 
                     case "show":
-                        try
-                        {
-                            switch (commandWords[1])
-                            {
-                                case "animal":
-                                    string animalName = InitialUpper(commandWords[2]);
-                                    Animal animal = zoo.FindAnimal(animalName);
-                                    if (animal != null)
-                                    {
-                                        Console.WriteLine($"The following animal was found: {animal.ToString()}.");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("The animal could not be found.");
-                                    }
-
-                                    break;
-
-                                case "guest":
-                                    string guestName = InitialUpper(commandWords[2]);
-                                    Guest guest = zoo.FindGuest(guestName);
-                                    if (guest != null)
-                                    {
-                                        Console.WriteLine($"The following guest was found: {guest.ToString()}.");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("The guest could not be found.");
-                                    }
-
-                                    break;
-                            }
-                        }
-                        catch (ArgumentOutOfRangeException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("A number must be entered as a parameter.");
-                        }
-                        catch (IndexOutOfRangeException)
-                        {
-                            Console.WriteLine("A parameter must be entered for the temperature command.");
-                        }
-
+                        ConsoleHelper.ProcessShowCommand(zoo, commandWords);
                         break;
 
                     default:
@@ -144,22 +78,6 @@ namespace ZooConsole
                         break;
                 }
             }
-        }
-
-        /// <summary>
-        /// Capitalizes the first letter of a string.
-        /// </summary>
-        /// <param name="str">The string to capitalize.</param>
-        /// <returns>The string with its first letter capitalized.</returns>
-        private static string InitialUpper(string str)
-        {
-            if (str == null || str.Length == 0)
-            {
-                return str;
-            }
-
-            string result = char.ToUpper(str[0]) + str.Substring(1);
-            return result;
         }
     }
 }

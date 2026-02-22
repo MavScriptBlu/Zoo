@@ -10,7 +10,7 @@ namespace People
         /// <summary>
         /// The color of the wallet.
         /// </summary>
-        private string color;
+        private WalletColor color;
 
         /// <summary>
         /// The wallet's internal money pocket.
@@ -21,7 +21,7 @@ namespace People
         /// Initializes a new instance of the Wallet class.
         /// </summary>
         /// <param name="color">The color of the wallet.</param>
-        public Wallet(string color)
+        public Wallet(WalletColor color)
         {
             this.color = color;
             this.moneyPocket = new MoneyCollector();

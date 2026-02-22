@@ -20,6 +20,11 @@ namespace Animals
         private double babyWeightPercentage;
 
         /// <summary>
+        /// The gender of the animal.
+        /// </summary>
+        private Gender gender;
+
+        /// <summary>
         /// A value indicating whether or not the animal is pregnant.
         /// </summary>
         private bool isPregnant;
@@ -40,9 +45,11 @@ namespace Animals
         /// <param name="name">The name of the animal.</param>
         /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
-        public Animal(string name, int age, double weight)
+        /// <param name="gender">The gender of the animal.</param>
+        public Animal(string name, int age, double weight, Gender gender)
         {
             this.age = age;
+            this.gender = gender;
             this.name = name;
             this.weight = weight;
         }
@@ -147,7 +154,7 @@ namespace Animals
         public virtual IReproducer Reproduce()
         {
             // Create a baby reproducer.
-            Animal baby = Activator.CreateInstance(this.GetType(), string.Empty, 0, this.Weight * (this.BabyWeightPercentage / 100)) as Animal;
+            Animal baby = Activator.CreateInstance(this.GetType(), string.Empty, 0, this.Weight * (this.BabyWeightPercentage / 100), this.gender) as Animal;
 
             // Reduce mother's weight by 25 percent more than the value of the baby's weight.
             this.Weight -= baby.Weight * 1.25;

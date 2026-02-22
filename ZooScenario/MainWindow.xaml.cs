@@ -5,6 +5,7 @@ using Animals;
 using BirthingRooms;
 using BoothItems;
 using People;
+using Reproducers;
 using Zoos;
 
 namespace ZooScenario
@@ -84,7 +85,7 @@ namespace ZooScenario
             try
             {
                 // Create a new guest.
-                Guest ethel = new Guest("Ethel", 42, 30.00m, "Salmon");
+                Guest ethel = new Guest("Ethel", 42, 30.00m, WalletColor.Salmon, Gender.Female);
 
                 // Sell a ticket to the guest.
                 Ticket ticket = this.comoZoo.SellTicket(ethel);
@@ -108,14 +109,27 @@ namespace ZooScenario
         /// <param name="e">The arguments for the event.</param>
         private void feedAnimalButton_Click(object sender, RoutedEventArgs e)
         {
-            // Find Greg.
-            Guest greg = this.comoZoo.FindGuest("Greg");
+            // Get the selected guest and animal from the list boxes.
+            Guest guest = this.guestListBox.SelectedItem as Guest;
+            Animal animal = this.animalListBox.SelectedItem as Animal;
 
-            // Find an ostrich.
-            Ostrich ostrich = this.comoZoo.FindAnimal(typeof(Ostrich)) as Ostrich;
+            if (guest != null && animal != null)
+            {
+                // Have the guest feed the animal.
+                guest.FeedAnimal(animal, this.comoZoo.AnimalSnackMachine);
 
-            // Have Greg feed the ostrich.
-            greg.FeedAnimal(ostrich, this.comoZoo.AnimalSnackMachine);
+                // Refresh the list boxes.
+                this.PopulateAnimalListBox();
+                this.PopulateGuestListBox();
+            }
+            else
+            {
+                MessageBox.Show("You must choose both a guest and an animal.");
+            }
+
+            // Keep both items selected after refresh.
+            this.guestListBox.SelectedItem = guest;
+            this.animalListBox.SelectedItem = animal;
         }
 
         /// <summary>

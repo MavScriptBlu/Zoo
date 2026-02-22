@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BoothItems;
 using Foods;
+using Reproducers;
 using VendingMachines;
 
 namespace People
@@ -14,6 +15,11 @@ namespace People
         /// The age of the guest.
         /// </summary>
         private int age;
+
+        /// <summary>
+        /// The gender of the guest.
+        /// </summary>
+        private Gender gender;
 
         /// <summary>
         /// The name of the guest.
@@ -37,9 +43,11 @@ namespace People
         /// <param name="age">The age of the guest.</param>
         /// <param name="moneyBalance">The initial amount of money to put into the guest's wallet.</param>
         /// <param name="walletColor">The color of the guest's wallet.</param>
-        public Guest(string name, int age, decimal moneyBalance, string walletColor)
+        /// <param name="gender">The gender of the guest.</param>
+        public Guest(string name, int age, decimal moneyBalance, WalletColor walletColor, Gender gender)
         {
             this.age = age;
+            this.gender = gender;
             this.name = name;
             this.wallet = new Wallet(walletColor);
             this.wallet.AddMoney(moneyBalance);
