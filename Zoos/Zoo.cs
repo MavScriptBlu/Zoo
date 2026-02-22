@@ -160,13 +160,14 @@ namespace Zoos
         /// <param name="ticket">The guest's ticket.</param>
         public void AddGuest(Guest guest, Ticket ticket)
         {
-            // Validate the ticket.
-            if (ticket != null && !ticket.IsRedeemed)
+            if (ticket == null)
             {
-                // Redeem the ticket.
-                ticket.Redeem();
+                throw new NullReferenceException("Guest could not be admitted because they do not have a ticket.");
+            }
 
-                // Add the guest to the list of guests.
+            if (!ticket.IsRedeemed)
+            {
+                ticket.Redeem();
                 this.guests.Add(guest);
             }
         }
@@ -246,6 +247,27 @@ namespace Zoos
         }
 
         /// <summary>
+        /// Finds an animal based on name.
+        /// </summary>
+        /// <param name="name">The name of the animal to find.</param>
+        /// <returns>The first matching animal.</returns>
+        public Animal FindAnimal(string name)
+        {
+            Animal animal = null;
+
+            foreach (Animal a in this.animals)
+            {
+                if (a.Name == name)
+                {
+                    animal = a;
+                    break;
+                }
+            }
+
+            return animal;
+        }
+
+        /// <summary>
         /// Finds a guest based on name.
         /// </summary>
         /// <param name="name">The name of the guest to find.</param>
@@ -284,6 +306,45 @@ namespace Zoos
             Ticket ticket = guest.VisitTicketBooth(this.ticketBooth);
 
             return ticket;
+        }
+
+        /// <summary>
+        /// Creates a new Como Zoo with default animals and guests.
+        /// </summary>
+        /// <returns>The created zoo.</returns>
+        public static Zoo NewZoo()
+        {
+            // Create employees.
+            Employee sam = new Employee("Sam", 42);
+            Employee flora = new Employee("Flora", 98);
+
+            // Create the zoo.
+            Zoo zoo = new Zoo("Como Zoo", 1000, 4, 0.75m, 15.00m, 3.00m, 3640.25m, sam, flora);
+
+            // Set the birthing room temperature to its starting value.
+            zoo.BirthingRoomTemperature = 77;
+
+            // Create and add animals.
+            zoo.AddAnimal(new Dingo("Pierre", 3, 25.2));
+            zoo.AddAnimal(new Dingo("Jackie", 4, 35.3));
+            zoo.AddAnimal(new Platypus("Patty", 2, 15.5));
+            zoo.AddAnimal(new Hummingbird("Harold", 1, 0.5));
+            zoo.AddAnimal(new Chimpanzee("Charlie", 5, 90.0));
+            zoo.AddAnimal(new Eagle("Emily", 3, 12.5));
+            zoo.AddAnimal(new Kangaroo("Kevin", 4, 110.0));
+            zoo.AddAnimal(new Ostrich("Oliver", 2, 250.0));
+            zoo.AddAnimal(new Shark("Steve", 6, 500.0));
+            zoo.AddAnimal(new Squirrel("Sammy", 1, 1.5));
+
+            // Create guests.
+            Guest greg = new Guest("Greg", 35, 20.00m, "Brown");
+            Guest darla = new Guest("Darla", 7, 25.25m, "Salmon");
+
+            // Sell tickets and add guests.
+            zoo.AddGuest(greg, zoo.SellTicket(greg));
+            zoo.AddGuest(darla, zoo.SellTicket(darla));
+
+            return zoo;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using People;
 using Reproducers;
 
@@ -49,10 +50,17 @@ namespace BirthingRooms
 
             set
             {
-                // If the value is in range...
                 if (value >= BirthingRoom.MinTemperature && value <= BirthingRoom.MaxTemperature)
                 {
                     this.temperature = value;
+                }
+                else if (value < BirthingRoom.MinTemperature)
+                {
+                    throw new ArgumentOutOfRangeException("temperature", "The temperature must be above 35 degrees.");
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("temperature", "The temperature must be below 95 degrees.");
                 }
             }
         }

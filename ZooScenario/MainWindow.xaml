@@ -5,6 +5,8 @@
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        xmlns:local="clr-namespace:ZooScenario"
        mc:Ignorable="d"
+       x:Name="window"
+       Loaded="window_Loaded"
        Title="Object-Oriented Programming 2: Zoo" Height="400" Width="440" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Name="admitGuestButton" Content="Admit guest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Width="120" Height="30" Click="admitGuestButton_Click"/>

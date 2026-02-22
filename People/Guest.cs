@@ -40,6 +40,17 @@ namespace People
         }
 
         /// <summary>
+        /// Gets the age of the guest.
+        /// </summary>
+        public int Age
+        {
+            get
+            {
+                return this.age;
+            }
+        }
+
+        /// <summary>
         /// Gets the name of the guest.
         /// </summary>
         public string Name
@@ -123,6 +134,15 @@ namespace People
             CouponBook couponBook = ticketBooth.GiveFreeCouponBook();
 
             return ticket;
+        }
+
+        /// <summary>
+        /// Generates a string representation of the guest.
+        /// </summary>
+        /// <returns>A string representation of the guest.</returns>
+        public override string ToString()
+        {
+            return string.Format("{0}: {1} [${2:0.00}]", this.name, this.age, this.wallet.MoneyBalance);
         }
     }
 }

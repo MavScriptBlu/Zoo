@@ -25,7 +25,9 @@ namespace ZooConsole
 
             Console.Title = "Object-Oriented Programming 2: Zoo";
 
-            zoo = null;
+            zoo = Zoo.NewZoo();
+
+            Console.WriteLine("A new Como Zoo has been created.");
 
             bool exit = false;
 
@@ -50,17 +52,19 @@ namespace ZooConsole
                         exit = true;
                         break;
 
-                    case "new":
-                        zoo = NewZoo();
-                        zoo.BirthingRoomTemperature = 77;
+                    case "restart":
+                        zoo = Zoo.NewZoo();
+                        Console.WriteLine("A new Como Zoo has been created.");
                         break;
 
                     case "help":
                         Console.WriteLine("Known commands:");
                         Console.WriteLine("HELP: Shows a list of known commands.");
                         Console.WriteLine("EXIT: Exits the application.");
-                        Console.WriteLine("NEW: Creates the ComoZoo.");
+                        Console.WriteLine("RESTART: Creates a new zoo.");
                         Console.WriteLine("TEMP: Sets the birthing room temperature.");
+                        Console.WriteLine("SHOW ANIMAL [animal name]: Displays information for specified animal.");
+                        Console.WriteLine("SHOW GUEST [guest name]: Displays information for specified guest.");
                         break;
 
                     case "temp":
@@ -71,9 +75,66 @@ namespace ZooConsole
                             Console.WriteLine($"Previous temperature: {previousTemp:0.0} °F.");
                             Console.WriteLine($"New temperature: {zoo.BirthingRoomTemperature:0.0} °F.");
                         }
-                        catch (Exception ex)
+                        catch (ArgumentOutOfRangeException ex)
                         {
                             Console.WriteLine(ex.Message);
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("A number must be entered as a parameter.");
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("A parameter must be entered for the temperature command.");
+                        }
+
+                        break;
+
+                    case "show":
+                        try
+                        {
+                            switch (commandWords[1])
+                            {
+                                case "animal":
+                                    string animalName = InitialUpper(commandWords[2]);
+                                    Animal animal = zoo.FindAnimal(animalName);
+                                    if (animal != null)
+                                    {
+                                        Console.WriteLine($"The following animal was found: {animal.ToString()}.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("The animal could not be found.");
+                                    }
+
+                                    break;
+
+                                case "guest":
+                                    string guestName = InitialUpper(commandWords[2]);
+                                    Guest guest = zoo.FindGuest(guestName);
+                                    if (guest != null)
+                                    {
+                                        Console.WriteLine($"The following guest was found: {guest.ToString()}.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("The guest could not be found.");
+                                    }
+
+                                    break;
+                            }
+                        }
+                        catch (ArgumentOutOfRangeException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("A number must be entered as a parameter.");
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("A parameter must be entered for the temperature command.");
                         }
 
                         break;
@@ -86,52 +147,19 @@ namespace ZooConsole
         }
 
         /// <summary>
-        /// Creates a new zoo.
+        /// Capitalizes the first letter of a string.
         /// </summary>
-        /// <returns>The created zoo.</returns>
-        private static Zoo NewZoo()
+        /// <param name="str">The string to capitalize.</param>
+        /// <returns>The string with its first letter capitalized.</returns>
+        private static string InitialUpper(string str)
         {
-            // Create employees.
-            Employee sam = new Employee("Sam", 42);
-            Employee flora = new Employee("Flora", 98);
+            if (str == null || str.Length == 0)
+            {
+                return str;
+            }
 
-            // Create the zoo.
-            Zoo comoZoo = new Zoo("Como Zoo", 1000, 4, 0.75m, 15.00m, 3.00m, 3640.25m, sam, flora);
-
-            // Create and add animals.
-            Dingo dPierre = new Dingo("Pierre", 3, 25.2);
-            comoZoo.AddAnimal(dPierre);
-
-            Dingo dJackie = new Dingo("Jackie", 4, 35.3);
-            comoZoo.AddAnimal(dJackie);
-
-            Platypus pPatty = new Platypus("Patty", 2, 15.5);
-            comoZoo.AddAnimal(pPatty);
-
-            Hummingbird hHarold = new Hummingbird("Harold", 1, 0.5);
-            comoZoo.AddAnimal(hHarold);
-
-            Chimpanzee cCharlie = new Chimpanzee("Charlie", 5, 90.0);
-            comoZoo.AddAnimal(cCharlie);
-
-            Eagle eEmily = new Eagle("Emily", 3, 12.5);
-            comoZoo.AddAnimal(eEmily);
-
-            Kangaroo kKevin = new Kangaroo("Kevin", 4, 110.0);
-            comoZoo.AddAnimal(kKevin);
-
-            Ostrich oOliver = new Ostrich("Oliver", 2, 250.0);
-            comoZoo.AddAnimal(oOliver);
-
-            Shark sSteve = new Shark("Steve", 6, 500.0);
-            comoZoo.AddAnimal(sSteve);
-
-            Squirrel sSammy = new Squirrel("Sammy", 1, 1.5);
-            comoZoo.AddAnimal(sSammy);
-
-            Console.WriteLine("A new Como Zoo has been created.");
-
-            return comoZoo;
+            string result = char.ToUpper(str[0]) + str.Substring(1);
+            return result;
         }
     }
 }
