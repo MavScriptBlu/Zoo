@@ -372,7 +372,7 @@ namespace Zoos
 
             // Create guests.
             IMoneyCollector gregAccount = new Account();
-            gregAccount.AddMoney(2500m);
+            gregAccount.AddMoney(50m);
             Guest greg = new Guest("Greg", 44, Gender.Male, gregAccount);
             Guest darla = new Guest("Darla", 11, Gender.Female, greg.Wallet);
 
