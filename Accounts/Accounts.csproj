@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D4E5F6A7-4444-5555-6666-777788889999}</ProjectGuid>
+    <ProjectGuid>{C2D3E4F5-AAAA-BBBB-CCCC-DDDDEEEEFFFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zoos</RootNamespace>
-    <AssemblyName>Zoos</AssemblyName>
+    <RootNamespace>Accounts</RootNamespace>
+    <AssemblyName>Accounts</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,38 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Zoo.cs" />
+    <Compile Include="Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Animals\Animals.csproj">
-      <Project>{a1b2c3d4-1111-2222-3333-444455556666}</Project>
-      <Name>Animals</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BoothItems\BoothItems.csproj">
-      <Project>{EA7ED94A-6C63-4CEB-90EB-8E503C5D2795}</Project>
-      <Name>BoothItems</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BirthingRooms\BirthingRooms.csproj">
-      <Project>{e5f6a7b8-5555-6666-7777-888899990000}</Project>
-      <Name>BirthingRooms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\People\People.csproj">
-      <Project>{b2c3d4e5-2222-3333-4444-555566667777}</Project>
-      <Name>People</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reproducers\Reproducers.csproj">
-      <Project>{9f674037-755b-46ee-a79a-a8b7a6d7bdf1}</Project>
-      <Name>Reproducers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VendingMachines\VendingMachines.csproj">
-      <Project>{c3d4e5f6-3333-4444-5555-666677778888}</Project>
-      <Name>VendingMachines</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Accounts\Accounts.csproj">
-      <Project>{C2D3E4F5-AAAA-BBBB-CCCC-DDDDEEEEFFFF}</Project>
-      <Name>Accounts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyCollectors\MoneyCollectors.csproj">
       <Project>{A7B8C9D0-7777-8888-9999-000011112222}</Project>
       <Name>MoneyCollectors</Name>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Accounts;
 using Animals;
 using BirthingRooms;
 using BoothItems;
@@ -80,7 +81,7 @@ namespace Zoos
         public Zoo(string name, int capacity, int restroomCapacity, decimal animalFoodPrice, decimal ticketPrice, decimal waterBottlePrice, decimal boothMoneyBalance, Employee attendant, Employee vet)
         {
             this.animals = new List<Animal>();
-            this.animalSnackMachine = new VendingMachine(animalFoodPrice, new MoneyBox());
+            this.animalSnackMachine = new VendingMachine(animalFoodPrice, new Account());
             this.b168 = new BirthingRoom(vet);
             this.capacity = capacity;
             this.guests = new List<Guest>();
@@ -370,8 +371,10 @@ namespace Zoos
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Dolly", 3, 22.0, Gender.Female));
 
             // Create guests.
-            Guest greg = new Guest("Greg", 35, 20.00m, WalletColor.Brown, Gender.Male);
-            Guest darla = new Guest("Darla", 7, 25.25m, WalletColor.Salmon, Gender.Female);
+            IMoneyCollector gregAccount = new Account();
+            gregAccount.AddMoney(2500m);
+            Guest greg = new Guest("Greg", 44, Gender.Male, gregAccount);
+            Guest darla = new Guest("Darla", 11, Gender.Female, greg.Wallet);
 
             // Sell tickets and add guests.
             zoo.AddGuest(greg, zoo.SellTicket(greg));

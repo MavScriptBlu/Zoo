@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BoothItems;
 using Foods;
+using MoneyCollectors;
 using Reproducers;
 using VendingMachines;
 
@@ -17,6 +18,11 @@ namespace People
         private int age;
 
         /// <summary>
+        /// The guest's checking account.
+        /// </summary>
+        private IMoneyCollector checkingAccount;
+
+        /// <summary>
         /// The gender of the guest.
         /// </summary>
         private Gender gender;
@@ -29,7 +35,7 @@ namespace People
         /// <summary>
         /// The guest's wallet.
         /// </summary>
-        private Wallet wallet;
+        private IMoneyCollector wallet;
 
         /// <summary>
         /// The guest's bag of items.
@@ -41,16 +47,15 @@ namespace People
         /// </summary>
         /// <param name="name">The name of the guest.</param>
         /// <param name="age">The age of the guest.</param>
-        /// <param name="moneyBalance">The initial amount of money to put into the guest's wallet.</param>
-        /// <param name="walletColor">The color of the guest's wallet.</param>
         /// <param name="gender">The gender of the guest.</param>
-        public Guest(string name, int age, decimal moneyBalance, WalletColor walletColor, Gender gender)
+        /// <param name="account">The guest's checking account.</param>
+        public Guest(string name, int age, Gender gender, IMoneyCollector account)
         {
             this.age = age;
             this.gender = gender;
             this.name = name;
-            this.wallet = new Wallet(walletColor);
-            this.wallet.AddMoney(moneyBalance);
+            this.wallet = new Wallet();
+            this.checkingAccount = account;
             this.bag = new List<Item>();
         }
 
@@ -73,6 +78,17 @@ namespace People
             get
             {
                 return this.name;
+            }
+        }
+
+        /// <summary>
+        /// Gets the guest's wallet.
+        /// </summary>
+        public IMoneyCollector Wallet
+        {
+            get
+            {
+                return this.wallet;
             }
         }
 
@@ -107,6 +123,12 @@ namespace People
             // Find food price.
             decimal price = animalSnackMachine.DetermineFoodPrice(eater.Weight);
 
+            // If wallet doesn't have enough, withdraw from checking account.
+            if (this.wallet.MoneyBalance < price)
+            {
+                this.WithdrawMoney(10 * price);
+            }
+
             // Get money from wallet.
             decimal payment = this.wallet.RemoveMoney(price);
 
@@ -127,14 +149,20 @@ namespace People
             // Get the ticket price.
             decimal ticketPrice = ticketBooth.TicketPrice;
 
+            // Get the water bottle price.
+            decimal waterBottlePrice = ticketBooth.WaterBottlePrice;
+
+            // If wallet doesn't have enough, withdraw from checking account.
+            if (this.wallet.MoneyBalance < ticketPrice + waterBottlePrice)
+            {
+                this.WithdrawMoney(2 * (ticketPrice + waterBottlePrice));
+            }
+
             // Get money from wallet.
             decimal payment = this.wallet.RemoveMoney(ticketPrice);
 
             // Buy the ticket.
             Ticket ticket = ticketBooth.SellTicket(payment);
-
-            // Get the water bottle price.
-            decimal waterBottlePrice = ticketBooth.WaterBottlePrice;
 
             // Get money from wallet for water bottle.
             decimal waterBottlePayment = this.wallet.RemoveMoney(waterBottlePrice);
@@ -166,12 +194,21 @@ namespace People
         }
 
         /// <summary>
+        /// Withdraws money from the checking account into the wallet.
+        /// </summary>
+        /// <param name="amount">The amount of money to withdraw.</param>
+        public void WithdrawMoney(decimal amount)
+        {
+            this.wallet.AddMoney(this.checkingAccount.RemoveMoney(amount));
+        }
+
+        /// <summary>
         /// Generates a string representation of the guest.
         /// </summary>
         /// <returns>A string representation of the guest.</returns>
         public override string ToString()
         {
-            return string.Format("{0}: {1} [${2:0.00}]", this.name, this.age, this.wallet.MoneyBalance);
+            return string.Format("{0}: {1} [${2:0.00} / ${3:0.00}]", this.name, this.age, this.wallet.MoneyBalance, this.checkingAccount.MoneyBalance);
         }
     }
 }

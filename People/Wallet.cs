@@ -5,7 +5,7 @@ namespace People
     /// <summary>
     /// The class which is used to represent a wallet.
     /// </summary>
-    public class Wallet
+    public class Wallet : IMoneyCollector
     {
         /// <summary>
         /// The color of the wallet.
@@ -24,6 +24,14 @@ namespace People
         public Wallet(WalletColor color)
         {
             this.color = color;
+            this.moneyPocket = new MoneyPocket();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Wallet class with a default color.
+        /// </summary>
+        public Wallet()
+        {
             this.moneyPocket = new MoneyPocket();
         }
 
