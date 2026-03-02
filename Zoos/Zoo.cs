@@ -373,7 +373,7 @@ namespace Zoos
             // Create guests.
             IMoneyCollector gregAccount = new Account();
             gregAccount.AddMoney(2500m);
-            Guest greg = new Guest("Greg", 44, 25.00m, WalletColor.Brown, Gender.Male, gregAccount);
+            Guest greg = new Guest("Greg", 44, 43.00m, WalletColor.Brown, Gender.Male, gregAccount);
             Guest darla = new Guest("Darla", 11, 10.00m, WalletColor.Salmon, Gender.Female, greg.Wallet);
 
             // Sell tickets and add guests.
