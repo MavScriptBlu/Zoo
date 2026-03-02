@@ -366,15 +366,15 @@ namespace Zoos
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Eagle, "Emily", 3, 12.5, Gender.Female));
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Kangaroo, "Kevin", 4, 110.0, Gender.Male));
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Ostrich, "Oliver", 2, 250.0, Gender.Male));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Shark, "Steve", 6, 500.0, Gender.Male));
+            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Shark, "Steve", 6, 390.0, Gender.Male));
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Squirrel, "Sammy", 1, 1.5, Gender.Female));
             zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Dolly", 3, 22.0, Gender.Female));
 
             // Create guests.
             IMoneyCollector gregAccount = new Account();
-            gregAccount.AddMoney(50m);
-            Guest greg = new Guest("Greg", 44, Gender.Male, gregAccount);
-            Guest darla = new Guest("Darla", 11, Gender.Female, greg.Wallet);
+            gregAccount.AddMoney(2500m);
+            Guest greg = new Guest("Greg", 44, 25.00m, WalletColor.Brown, Gender.Male, gregAccount);
+            Guest darla = new Guest("Darla", 11, 10.00m, WalletColor.Salmon, Gender.Female, greg.Wallet);
 
             // Sell tickets and add guests.
             zoo.AddGuest(greg, zoo.SellTicket(greg));

@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Media;
+using Accounts;
 using Animals;
 using BirthingRooms;
 using BoothItems;
@@ -85,7 +86,7 @@ namespace ZooScenario
             try
             {
                 // Create a new guest.
-                Guest ethel = new Guest("Ethel", 42, 30.00m, WalletColor.Salmon, Gender.Female);
+                Guest ethel = new Guest("Ethel", 42, 30.00m, WalletColor.Salmon, Gender.Female, new Account());
 
                 // Sell a ticket to the guest.
                 Ticket ticket = this.comoZoo.SellTicket(ethel);

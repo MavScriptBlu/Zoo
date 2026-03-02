@@ -35,7 +35,7 @@ namespace People
         /// <summary>
         /// The guest's wallet.
         /// </summary>
-        private IMoneyCollector wallet;
+        private Wallet wallet;
 
         /// <summary>
         /// The guest's bag of items.
@@ -47,15 +47,18 @@ namespace People
         /// </summary>
         /// <param name="name">The name of the guest.</param>
         /// <param name="age">The age of the guest.</param>
+        /// <param name="moneyBalance">The initial money balance to place in the guest's wallet.</param>
+        /// <param name="walletColor">The color of the guest's wallet.</param>
         /// <param name="gender">The gender of the guest.</param>
-        /// <param name="account">The guest's checking account.</param>
-        public Guest(string name, int age, Gender gender, IMoneyCollector account)
+        /// <param name="checkingAccount">The guest's checking account.</param>
+        public Guest(string name, int age, decimal moneyBalance, WalletColor walletColor, Gender gender, IMoneyCollector checkingAccount)
         {
             this.age = age;
             this.gender = gender;
             this.name = name;
-            this.wallet = new Wallet();
-            this.checkingAccount = account;
+            this.wallet = new Wallet(walletColor);
+            this.wallet.AddMoney(moneyBalance);
+            this.checkingAccount = checkingAccount;
             this.bag = new List<Item>();
         }
 
@@ -82,9 +85,20 @@ namespace People
         }
 
         /// <summary>
+        /// Gets the guest's checking account.
+        /// </summary>
+        public IMoneyCollector CheckingAccount
+        {
+            get
+            {
+                return this.checkingAccount;
+            }
+        }
+
+        /// <summary>
         /// Gets the guest's wallet.
         /// </summary>
-        public IMoneyCollector Wallet
+        public Wallet Wallet
         {
             get
             {
