@@ -56,6 +56,7 @@ namespace ZooScenario
             this.ConfigureBirthingRoomControls();
             this.PopulateAnimalListBox();
             this.PopulateGuestListBox();
+            this.animalTypeComboBox.ItemsSource = Enum.GetValues(typeof(AnimalType));
         }
 
         /// <summary>
@@ -131,6 +132,84 @@ namespace ZooScenario
             // Keep both items selected after refresh.
             this.guestListBox.SelectedItem = guest;
             this.animalListBox.SelectedItem = animal;
+        }
+
+        /// <summary>
+        /// Adds a new animal to the zoo using a dialog window.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void addAnimalButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AnimalType animalType = (AnimalType)this.animalTypeComboBox.SelectedItem;
+                Animal animal = AnimalFactory.CreateAnimal(animalType, "NoName", 0, 0.0, Gender.Female);
+
+                AnimalWindow animalWindow = new AnimalWindow(animal);
+
+                if (animalWindow.ShowDialog() == true)
+                {
+                    this.comoZoo.AddAnimal(animal);
+                    this.PopulateAnimalListBox();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("An animal type must be selected before adding an animal to the zoo.");
+            }
+        }
+
+        /// <summary>
+        /// Removes the selected animal from the zoo.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void removeAnimalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Animal animal = this.animalListBox.SelectedItem as Animal;
+
+            if (animal != null)
+            {
+                if (MessageBox.Show(
+                    string.Format("Are you sure you want to remove animal: {0}?", animal.Name),
+                    "Confirmation",
+                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    this.comoZoo.RemoveAnimal(animal);
+                    this.PopulateAnimalListBox();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an animal to remove.");
+            }
+        }
+
+        /// <summary>
+        /// Removes the selected guest from the zoo.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void removeGuestButton_Click(object sender, RoutedEventArgs e)
+        {
+            Guest guest = this.guestListBox.SelectedItem as Guest;
+
+            if (guest != null)
+            {
+                if (MessageBox.Show(
+                    string.Format("Are you sure you want to remove guest: {0}?", guest.Name),
+                    "Confirmation",
+                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    this.comoZoo.RemoveGuest(guest);
+                    this.PopulateGuestListBox();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a guest to remove.");
+            }
         }
 
         /// <summary>
