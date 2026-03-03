@@ -52,6 +52,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Accounts\Accounts.csproj">
+      <Project>{C2D3E4F5-AAAA-BBBB-CCCC-DDDDEEEEFFFF}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyCollectors\MoneyCollectors.csproj">
+      <Project>{A7B8C9D0-7777-8888-9999-000011112222}</Project>
+      <Name>MoneyCollectors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Animals\Animals.csproj">
       <Project>{A1B2C3D4-1111-2222-3333-444455556666}</Project>
       <Name>Animals</Name>

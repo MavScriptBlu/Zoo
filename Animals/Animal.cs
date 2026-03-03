@@ -55,6 +55,38 @@ namespace Animals
         }
 
         /// <summary>
+        /// Gets or sets the age of the animal.
+        /// </summary>
+        public int Age
+        {
+            get
+            {
+                return this.age;
+            }
+
+            set
+            {
+                this.age = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the gender of the animal.
+        /// </summary>
+        public Gender Gender
+        {
+            get
+            {
+                return this.gender;
+            }
+
+            set
+            {
+                this.gender = value;
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether or not the animal is pregnant.
         /// </summary>
         public bool IsPregnant
@@ -77,10 +109,10 @@ namespace Animals
 
             set
             {
-                if (name.Length > 0)
+                if (value.Length > 0)
                     this.name = value;
                 else
-                    throw new Exception("No Name");
+                    throw new Exception("Name must have a value.");
             }
         }
 
@@ -94,7 +126,7 @@ namespace Animals
                 return this.weight;
             }
 
-            protected set
+            set
             {
                 this.weight = value;
             }

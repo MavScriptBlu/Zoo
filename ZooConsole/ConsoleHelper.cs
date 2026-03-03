@@ -1,6 +1,10 @@
 using System;
+using Accounts;
 using Animals;
+using BoothItems;
+using MoneyCollectors;
 using People;
+using Reproducers;
 using Zoos;
 
 namespace ZooConsole
@@ -107,6 +111,190 @@ namespace ZooConsole
             catch (IndexOutOfRangeException)
             {
                 Console.WriteLine("A parameter must be entered for the show command.");
+            }
+        }
+
+        /// <summary>
+        /// Processes the add command.
+        /// </summary>
+        /// <param name="zoo">The zoo to add to.</param>
+        /// <param name="type">The type of object to add (animal or guest).</param>
+        public static void ProcessAddCommand(Zoo zoo, string type)
+        {
+            switch (type)
+            {
+                case "animal":
+                    AddAnimal(zoo);
+                    break;
+
+                case "guest":
+                    AddGuest(zoo);
+                    break;
+
+                default:
+                    throw new Exception("The command only supports adding animals or guests.");
+            }
+        }
+
+        /// <summary>
+        /// Adds a new animal to the zoo via console input.
+        /// </summary>
+        /// <param name="zoo">The zoo to add the animal to.</param>
+        public static void AddAnimal(Zoo zoo)
+        {
+            AnimalType animalType = ConsoleUtil.ReadAnimalType();
+
+            Animal animal = AnimalFactory.CreateAnimal(animalType, "NoName", 0, 0.0, Gender.Female);
+
+            bool success = false;
+
+            while (!success)
+            {
+                try
+                {
+                    animal.Name = ConsoleUtil.InitialUpper(ConsoleUtil.ReadAlphabeticValue("Name"));
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            success = false;
+
+            while (!success)
+            {
+                try
+                {
+                    animal.Gender = ConsoleUtil.ReadGender();
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            success = false;
+
+            while (!success)
+            {
+                try
+                {
+                    animal.Age = ConsoleUtil.ReadIntValue("Age");
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            success = false;
+
+            while (!success)
+            {
+                try
+                {
+                    animal.Weight = ConsoleUtil.ReadDoubleValue("Weight");
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            zoo.AddAnimal(animal);
+            ShowAnimal(zoo, animal.Name);
+        }
+
+        /// <summary>
+        /// Adds a new guest to the zoo via console input.
+        /// </summary>
+        /// <param name="zoo">The zoo to add the guest to.</param>
+        public static void AddGuest(Zoo zoo)
+        {
+            string name = ConsoleUtil.InitialUpper(ConsoleUtil.ReadAlphabeticValue("Name"));
+            Gender gender = ConsoleUtil.ReadGender();
+            int age = ConsoleUtil.ReadIntValue("Age");
+            decimal walletBalance = (decimal)ConsoleUtil.ReadDoubleValue("Wallet money balance");
+            WalletColor walletColor = ConsoleUtil.ReadWalletColor();
+            decimal checkingBalance = (decimal)ConsoleUtil.ReadDoubleValue("Checking account balance");
+
+            IMoneyCollector checkingAccount = new Account();
+            checkingAccount.AddMoney(checkingBalance);
+
+            Guest guest = new Guest(name, age, walletBalance, walletColor, gender, checkingAccount);
+
+            Ticket ticket = zoo.SellTicket(guest);
+            zoo.AddGuest(guest, ticket);
+
+            ShowGuest(zoo, guest.Name);
+        }
+
+        /// <summary>
+        /// Processes the remove command.
+        /// </summary>
+        /// <param name="zoo">The zoo to remove from.</param>
+        /// <param name="type">The type of object to remove (animal or guest).</param>
+        /// <param name="name">The name of the object to remove.</param>
+        public static void ProcessRemoveCommand(Zoo zoo, string type, string name)
+        {
+            switch (type)
+            {
+                case "animal":
+                    RemoveAnimal(zoo, ConsoleUtil.InitialUpper(name));
+                    break;
+
+                case "guest":
+                    RemoveGuest(zoo, ConsoleUtil.InitialUpper(name));
+                    break;
+
+                default:
+                    Console.WriteLine("The command only supports removing animals or guests.");
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Removes the named animal from the zoo.
+        /// </summary>
+        /// <param name="zoo">The zoo to remove the animal from.</param>
+        /// <param name="name">The name of the animal to remove.</param>
+        public static void RemoveAnimal(Zoo zoo, string name)
+        {
+            Animal animal = zoo.FindAnimal(name);
+
+            if (animal != null)
+            {
+                zoo.RemoveAnimal(animal);
+                Console.WriteLine("Animal was removed.");
+            }
+            else
+            {
+                Console.WriteLine("The animal could not be found.");
+            }
+        }
+
+        /// <summary>
+        /// Removes the named guest from the zoo.
+        /// </summary>
+        /// <param name="zoo">The zoo to remove the guest from.</param>
+        /// <param name="name">The name of the guest to remove.</param>
+        public static void RemoveGuest(Zoo zoo, string name)
+        {
+            Guest guest = zoo.FindGuest(name);
+
+            if (guest != null)
+            {
+                zoo.RemoveGuest(guest);
+                Console.WriteLine("Guest was removed.");
+            }
+            else
+            {
+                Console.WriteLine("The guest could not be found.");
             }
         }
     }

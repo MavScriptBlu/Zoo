@@ -203,6 +203,24 @@ namespace Zoos
         }
 
         /// <summary>
+        /// Removes an animal from the zoo.
+        /// </summary>
+        /// <param name="animal">The animal to remove.</param>
+        public void RemoveAnimal(Animal animal)
+        {
+            this.animals.Remove(animal);
+        }
+
+        /// <summary>
+        /// Removes a guest from the zoo.
+        /// </summary>
+        /// <param name="guest">The guest to remove.</param>
+        public void RemoveGuest(Guest guest)
+        {
+            this.guests.Remove(guest);
+        }
+
+        /// <summary>
         /// Aids a reproducer in giving birth.
         /// </summary>
         /// <param name="reproducer">The reproducer that is to give birth.</param>
