@@ -132,7 +132,7 @@ namespace ZooConsole
                     break;
 
                 default:
-                    throw new Exception("The command only supports adding animals or guests.");
+                    throw new Exception("The command only supports adding animals.");
             }
         }
 
@@ -216,9 +216,54 @@ namespace ZooConsole
         /// <param name="zoo">The zoo to add the guest to.</param>
         public static void AddGuest(Zoo zoo)
         {
-            string name = ConsoleUtil.InitialUpper(ConsoleUtil.ReadAlphabeticValue("Name"));
-            Gender gender = ConsoleUtil.ReadGender();
-            int age = ConsoleUtil.ReadIntValue("Age");
+            string name = null;
+            bool success = false;
+
+            while (!success)
+            {
+                try
+                {
+                    name = ConsoleUtil.InitialUpper(ConsoleUtil.ReadAlphabeticValue("Name"));
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            Gender gender = Gender.Female;
+            success = false;
+
+            while (!success)
+            {
+                try
+                {
+                    gender = ConsoleUtil.ReadGender();
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            int age = 0;
+            success = false;
+
+            while (!success)
+            {
+                try
+                {
+                    age = ConsoleUtil.ReadIntValue("Age");
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
             decimal walletBalance = (decimal)ConsoleUtil.ReadDoubleValue("Wallet money balance");
             WalletColor walletColor = ConsoleUtil.ReadWalletColor();
             decimal checkingBalance = (decimal)ConsoleUtil.ReadDoubleValue("Checking account balance");
@@ -253,7 +298,7 @@ namespace ZooConsole
                     break;
 
                 default:
-                    Console.WriteLine("The command only supports removing animals or guests.");
+                    Console.WriteLine("The command only supports removing animals.");
                     break;
             }
         }
