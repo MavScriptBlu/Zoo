@@ -49,8 +49,8 @@
             <!-- Is Pregnant -->
             <Label Grid.Row="9" Grid.Column="0" Content="Is Pregnant" HorizontalAlignment="Right" VerticalAlignment="Center" />
             <StackPanel Grid.Row="9" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                <Button x:Name="makePregnantButton" Content="Make pregnant" Width="120" Height="25" Click="makePregnantButton_Click" />
-                <Label x:Name="pregnancyStatusLabel" Content="No" Margin="10,0,0,0" VerticalAlignment="Center" />
+                <Button x:Name="makePregnantButton" Content="Make pregnant" Click="makePregnantButton_Click" />
+                <Label x:Name="pregnancyStatusLabel" Content="No" VerticalAlignment="Center" Margin="8,0,0,0" />
             </StackPanel>
         </Grid>
 
