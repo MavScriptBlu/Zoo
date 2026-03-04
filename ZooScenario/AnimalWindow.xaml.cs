@@ -52,7 +52,14 @@ namespace ZooScenario
         /// <param name="e">The arguments for the event.</param>
         private void nameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.animal.Name = this.nameTextBox.Text;
+            try
+            {
+                this.animal.Name = this.nameTextBox.Text;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -62,7 +69,14 @@ namespace ZooScenario
         /// <param name="e">The arguments for the event.</param>
         private void ageTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.animal.Age = int.Parse(this.ageTextBox.Text);
+            try
+            {
+                this.animal.Age = int.Parse(this.ageTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -72,7 +86,14 @@ namespace ZooScenario
         /// <param name="e">The arguments for the event.</param>
         private void weightTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.animal.Weight = double.Parse(this.weightTextBox.Text);
+            try
+            {
+                this.animal.Weight = double.Parse(this.weightTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -82,8 +103,20 @@ namespace ZooScenario
         /// <param name="e">The arguments for the event.</param>
         private void genderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.animal.Gender = (Gender)this.genderComboBox.SelectedItem;
-            this.makePregnantButton.IsEnabled = this.animal.Gender == Gender.Female;
+            if (this.genderComboBox.SelectedItem == null)
+            {
+                return;
+            }
+
+            try
+            {
+                this.animal.Gender = (Gender)this.genderComboBox.SelectedItem;
+                this.makePregnantButton.IsEnabled = this.animal.Gender == Gender.Female;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
