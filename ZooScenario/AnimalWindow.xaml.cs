@@ -111,7 +111,7 @@ namespace ZooScenario
             try
             {
                 this.animal.Gender = (Gender)this.genderComboBox.SelectedItem;
-                this.makePregnantButton.IsEnabled = this.animal.Gender == Gender.Female;
+                this.makePregnantButton.IsEnabled = this.animal.Gender == Gender.Female && !this.animal.IsPregnant;
             }
             catch (Exception ex)
             {
