@@ -62,13 +62,13 @@ namespace ZooScenario
             this.waterBottles = new List<WaterBottle>();
 
             // Create booth items using a single for loop
-            for (int i = 0; i < 10; i++)
+            for (int itemIndex = 0; itemIndex < 10; itemIndex++)
             {
                 // Create maps (10 total)
                 this.maps.Add(new Map(0.5, DateTime.Now));
 
                 // Create items for the first 5 iterations
-                if (i < 5)
+                if (itemIndex < 5)
                 {
                     // Create coupon books (5 total)
                     // All issued today, expire one year from today, weigh 0.8
@@ -76,7 +76,7 @@ namespace ZooScenario
 
                     // Create tickets (5 total)
                     // All are $15, weigh 0.01, have unique sequential serial numbers
-                    int serialNumber = i + 1;
+                    int serialNumber = itemIndex + 1;
                     this.tickets.Add(new Ticket(15m, serialNumber, 0.01));
 
                     // Create water bottles (5 total)

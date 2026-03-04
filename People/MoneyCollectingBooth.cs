@@ -38,9 +38,9 @@ namespace People
             this.moneyBox = moneyBox;
 
             // Create tickets (5 total) and water bottles (5 total).
-            for (int i = 0; i < 5; i++)
+            for (int itemIndex = 0; itemIndex < 5; itemIndex++)
             {
-                int serialNumber = i + 1;
+                int serialNumber = itemIndex + 1;
                 this.Items.Add(new Ticket(15m, serialNumber, 0.01));
                 this.Items.Add(new WaterBottle(this.waterBottlePrice, serialNumber, 1));
             }
