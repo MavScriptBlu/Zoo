@@ -213,6 +213,32 @@ namespace ZooScenario
         }
 
         /// <summary>
+        /// Adds a new guest to the zoo using a dialog window.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void addGuestButton_Click(object sender, RoutedEventArgs e)
+        {
+            Guest guest = new Guest("NoName", 0, 0m, WalletColor.Black, Gender.Female, new Account());
+
+            GuestWindow guestWindow = new GuestWindow(guest);
+
+            if (guestWindow.ShowDialog() == true)
+            {
+                try
+                {
+                    Ticket ticket = this.comoZoo.SellTicket(guest);
+                    this.comoZoo.AddGuest(guest, ticket);
+                    this.PopulateGuestListBox();
+                }
+                catch (NullReferenceException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
         /// Increases the birthing room temperature by 1 degree.
         /// </summary>
         /// <param name="sender">The object that initiated the event.</param>

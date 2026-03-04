@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using BoothItems;
 using Foods;
 using MoneyCollectors;
@@ -63,7 +65,7 @@ namespace People
         }
 
         /// <summary>
-        /// Gets the age of the guest.
+        /// Gets or sets the age of the guest.
         /// </summary>
         public int Age
         {
@@ -71,16 +73,52 @@ namespace People
             {
                 return this.age;
             }
+
+            set
+            {
+                if (value < 0 || value > 120)
+                {
+                    throw new ArgumentOutOfRangeException("Age must be between 0 and 120.");
+                }
+
+                this.age = value;
+            }
         }
 
         /// <summary>
-        /// Gets the name of the guest.
+        /// Gets or sets the gender of the guest.
+        /// </summary>
+        public Gender Gender
+        {
+            get
+            {
+                return this.gender;
+            }
+
+            set
+            {
+                this.gender = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the guest.
         /// </summary>
         public string Name
         {
             get
             {
                 return this.name;
+            }
+
+            set
+            {
+                if (!Regex.IsMatch(value, @"^[a-zA-Z ]+$"))
+                {
+                    throw new FormatException("Name must only contain letters and spaces.");
+                }
+
+                this.name = value;
             }
         }
 
