@@ -47,8 +47,11 @@
             <TextBox x:Name="weightTextBox" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" LostFocus="weightTextBox_LostFocus" />
 
             <!-- Is Pregnant -->
-            <Label x:Name="pregnancyStatusLabel" Grid.Row="9" Grid.Column="0" Content="No" HorizontalAlignment="Right" VerticalAlignment="Center" />
-            <Button x:Name="makePregnantButton" Grid.Row="9" Grid.Column="2" Content="Make pregnant" VerticalAlignment="Center" Click="makePregnantButton_Click" />
+            <Label Grid.Row="9" Grid.Column="0" Content="Is Pregnant" HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <StackPanel Grid.Row="9" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label x:Name="pregnancyStatusLabel" Content="No" VerticalAlignment="Center" Padding="0,0,6,0" />
+                <Button x:Name="makePregnantButton" Content="Make pregnant" VerticalAlignment="Center" Click="makePregnantButton_Click" />
+            </StackPanel>
         </Grid>
 
         <!-- OK and Cancel buttons -->
