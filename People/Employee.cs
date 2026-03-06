@@ -98,16 +98,16 @@ namespace People
             Item item = null;
 
             // Loop through the list of items.
-            foreach (Item i in items)
+            foreach (Item currentItem in items)
             {
                 // If the current item matches the type...
-                if (i.GetType() == type)
+                if (currentItem.GetType() == type)
                 {
                     // Store the current item in the variable.
-                    item = i;
+                    item = currentItem;
 
                     // Remove the item from the list.
-                    items.Remove(i);
+                    items.Remove(currentItem);
 
                     // Break out of the loop.
                     break;

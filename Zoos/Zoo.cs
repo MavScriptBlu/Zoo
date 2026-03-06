@@ -164,10 +164,10 @@ namespace Zoos
                 double totalWeight = 0;
 
                 // Loop through the list of animals.
-                foreach (Animal a in this.animals)
+                foreach (Animal animal in this.animals)
                 {
                     // Add current animal's weight to the total.
-                    totalWeight += a.Weight;
+                    totalWeight += animal.Weight;
                 }
 
                 return totalWeight;
@@ -230,13 +230,13 @@ namespace Zoos
             Animal animal = null;
 
             // Loop through the list of animals.
-            foreach (Animal a in this.animals)
+            foreach (Animal currentAnimal in this.animals)
             {
                 // If the current animal matches...
-                if (a.GetType() == type)
+                if (currentAnimal.GetType() == type)
                 {
                     // Set the current animal to the variable.
-                    animal = a;
+                    animal = currentAnimal;
 
                     // Break out of the loop.
                     break;
@@ -259,13 +259,13 @@ namespace Zoos
             Animal animal = null;
 
             // Loop through the list of animals.
-            foreach (Animal a in this.animals)
+            foreach (Animal currentAnimal in this.animals)
             {
                 // If the current animal matches...
-                if (a.GetType() == type && a.IsPregnant == isPregnant)
+                if (currentAnimal.GetType() == type && currentAnimal.IsPregnant == isPregnant)
                 {
                     // Store the current animal in the variable.
-                    animal = a;
+                    animal = currentAnimal;
 
                     // Break out of the loop.
                     break;
@@ -285,11 +285,11 @@ namespace Zoos
         {
             Animal animal = null;
 
-            foreach (Animal a in this.animals)
+            foreach (Animal currentAnimal in this.animals)
             {
-                if (a.Name == name)
+                if (currentAnimal.Name == name)
                 {
-                    animal = a;
+                    animal = currentAnimal;
                     break;
                 }
             }
@@ -308,13 +308,13 @@ namespace Zoos
             Guest guest = null;
 
             // Loop through the list of guests.
-            foreach (Guest g in this.guests)
+            foreach (Guest currentGuest in this.guests)
             {
                 // If the current guest matches...
-                if (g.Name == name)
+                if (currentGuest.Name == name)
                 {
                     // Store the current guest in the variable.
-                    guest = g;
+                    guest = currentGuest;
 
                     // Break out of the loop.
                     break;

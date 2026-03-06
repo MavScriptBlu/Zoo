@@ -16,11 +16,11 @@ namespace People
             : base(attendant)
         {
             // Create maps (10 total) and coupon books (5 total).
-            for (int i = 0; i < 10; i++)
+            for (int itemIndex = 0; itemIndex < 10; itemIndex++)
             {
                 this.Items.Add(new Map(0.5, DateTime.Now));
 
-                if (i < 5)
+                if (itemIndex < 5)
                 {
                     this.Items.Add(new CouponBook(DateTime.Now, DateTime.Now.AddYears(1), 0.8));
                 }
