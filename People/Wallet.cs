@@ -36,6 +36,22 @@ namespace People
         }
 
         /// <summary>
+        /// Gets or sets the color of the wallet.
+        /// </summary>
+        public WalletColor Color
+        {
+            get
+            {
+                return this.color;
+            }
+
+            set
+            {
+                this.color = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the money balance of the wallet.
         /// </summary>
         public decimal MoneyBalance

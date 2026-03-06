@@ -1,6 +1,7 @@
 using Foods;
 using Reproducers;
 using System;
+using System.Text.RegularExpressions;
 
 namespace Animals
 {
@@ -55,6 +56,43 @@ namespace Animals
         }
 
         /// <summary>
+        /// Gets or sets the age of the animal.
+        /// </summary>
+        public int Age
+        {
+            get
+            {
+                return this.age;
+            }
+
+            set
+            {
+                if (value < 0 || value > 100)
+                {
+                    throw new ArgumentOutOfRangeException("Age must be between 0 and 100.");
+                }
+
+                this.age = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the gender of the animal.
+        /// </summary>
+        public Gender Gender
+        {
+            get
+            {
+                return this.gender;
+            }
+
+            set
+            {
+                this.gender = value;
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether or not the animal is pregnant.
         /// </summary>
         public bool IsPregnant
@@ -77,10 +115,12 @@ namespace Animals
 
             set
             {
-                if (name.Length > 0)
-                    this.name = value;
-                else
-                    throw new Exception("No Name");
+                if (!Regex.IsMatch(value, @"^[a-zA-Z ]+$"))
+                {
+                    throw new FormatException("Name must only contain letters and spaces.");
+                }
+
+                this.name = value;
             }
         }
 
@@ -94,8 +134,13 @@ namespace Animals
                 return this.weight;
             }
 
-            protected set
+            set
             {
+                if (value < 0 || value > 1000)
+                {
+                    throw new ArgumentOutOfRangeException("Weight must be between 0 and 1000.");
+                }
+
                 this.weight = value;
             }
         }
@@ -131,7 +176,7 @@ namespace Animals
         public virtual void Eat(Food food)
         {
             // Increase animal's weight as a result of eating food.
-            this.Weight += food.Weight * (this.WeightGainPercentage / 100);
+            this.weight += food.Weight * (this.WeightGainPercentage / 100);
         }
 
         /// <summary>
@@ -157,7 +202,7 @@ namespace Animals
             Animal baby = Activator.CreateInstance(this.GetType(), string.Empty, 0, this.Weight * (this.BabyWeightPercentage / 100), this.gender) as Animal;
 
             // Reduce mother's weight by 25 percent more than the value of the baby's weight.
-            this.Weight -= baby.Weight * 1.25;
+            this.weight -= baby.weight * 1.25;
 
             // Make mother not pregnant after giving birth.
             this.isPregnant = false;

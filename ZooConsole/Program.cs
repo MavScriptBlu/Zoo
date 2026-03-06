@@ -63,6 +63,10 @@ namespace ZooConsole
                         Console.WriteLine("TEMP: Sets the birthing room temperature.");
                         Console.WriteLine("SHOW ANIMAL [animal name]: Displays information for specified animal.");
                         Console.WriteLine("SHOW GUEST [guest name]: Displays information for specified guest.");
+                        Console.WriteLine("ADD ANIMAL: Adds a new animal to the zoo.");
+                        Console.WriteLine("ADD GUEST: Adds a new guest to the zoo.");
+                        Console.WriteLine("REMOVE ANIMAL [animal name]: Removes the specified animal from the zoo.");
+                        Console.WriteLine("REMOVE GUEST [guest name]: Removes the specified guest from the zoo.");
                         break;
 
                     case "temp":
@@ -71,6 +75,32 @@ namespace ZooConsole
 
                     case "show":
                         ConsoleHelper.ProcessShowCommand(zoo, commandWords);
+                        break;
+
+                    case "add":
+                        try
+                        {
+                            ConsoleHelper.ProcessAddCommand(zoo, commandWords[1]);
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("A type (animal or guest) must be entered for the add command.");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        break;
+
+                    case "remove":
+                        try
+                        {
+                            ConsoleHelper.ProcessRemoveCommand(zoo, commandWords[1], commandWords[2]);
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("A type and name must be entered for the remove command.");
+                        }
                         break;
 
                     default:

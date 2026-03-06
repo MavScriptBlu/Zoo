@@ -12,9 +12,14 @@
         <Button Name="admitGuestButton" Content="Admit guest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Width="120" Height="30" Click="admitGuestButton_Click"/>
         <Button Name="feedAnimalButton" Content="Feed animal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,20,0,0" Width="120" Height="30" Click="feedAnimalButton_Click"/>
         <Label Content="Animals" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,60,0,0"/>
-        <ListBox x:Name="animalListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0" Width="230" Height="350"/>
+        <ListBox x:Name="animalListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0" Width="230" Height="220"/>
+        <ComboBox x:Name="animalTypeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,310,0,0" Width="230" Height="25"/>
+        <Button x:Name="addAnimalButton" Content="Add animal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,345,0,0" Width="110" Height="30" Click="addAnimalButton_Click"/>
+        <Button x:Name="removeAnimalButton" Content="Remove animal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,345,0,0" Width="110" Height="30" Click="removeAnimalButton_Click"/>
         <Label Content="Guests" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,60,0,0"/>
-        <ListBox x:Name="guestListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,80,0,0" Width="230" Height="350"/>
+        <ListBox x:Name="guestListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,80,0,0" Width="230" Height="220"/>
+        <Button x:Name="addGuestButton" Content="Add guest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,310,0,0" Width="110" Height="30" Click="addGuestButton_Click"/>
+        <Button x:Name="removeGuestButton" Content="Remove guest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="390,310,0,0" Width="110" Height="30" Click="removeGuestButton_Click"/>
         <Border x:Name="temperatureBorder" BorderBrush="Black" BorderThickness="1" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="20" Height="100"/>
         <Label x:Name="temperatureLabel" Content="Temp" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,32,66" RenderTransformOrigin="0.729,1.781"/>
         <RepeatButton x:Name="increaseTempButton" Content="+" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,38" Width="23" Height="23" Click="increaseTempButton_Click"/>
