@@ -77,9 +77,9 @@ namespace Animals
 
             set
             {
-                if (value < 0)
+                if (value < 0 || value > 100)
                 {
-                    throw new ArgumentOutOfRangeException("age", "Age must be 0 or greater.");
+                    throw new ArgumentOutOfRangeException("age", "Age must be between 0 and 100.");
                 }
 
                 this.age = value;
@@ -135,9 +135,9 @@ namespace Animals
 
             set
             {
-                if (value < 0)
+                if (value < 0 || value > 1000)
                 {
-                    throw new ArgumentOutOfRangeException("weight", "Weight must be 0 or greater.");
+                    throw new ArgumentOutOfRangeException("weight", "Weight must be between 0 and 1000.");
                 }
 
                 this.weight = value;

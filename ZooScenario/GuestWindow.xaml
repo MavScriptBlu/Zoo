@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Loaded="window_Loaded"
-        Title="Guest" Height="380" Width="400" WindowStartupLocation="CenterOwner">
+        Title="Guest" Height="480" Width="440" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="140"/>
             <ColumnDefinition Width="4"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="4"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="4"/>
@@ -29,24 +33,34 @@
         </Grid.RowDefinitions>
 
         <Label Content="Name:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="nameTextBox" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
+        <TextBox x:Name="nameTextBox" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" LostFocus="nameTextBox_LostFocus"/>
 
         <Label Content="Age:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="ageTextBox" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center"/>
+        <TextBox x:Name="ageTextBox" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center" LostFocus="ageTextBox_LostFocus"/>
 
         <Label Content="Gender:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <ComboBox x:Name="genderComboBox" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center"/>
+        <ComboBox x:Name="genderComboBox" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Center" SelectionChanged="genderComboBox_SelectionChanged"/>
 
-        <Label Content="Wallet Balance:" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="walletBalanceTextBox" Grid.Column="2" Grid.Row="7" VerticalAlignment="Center"/>
+        <Label Content="Wallet Color:" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox x:Name="walletColorComboBox" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
 
-        <Label Content="Wallet Color:" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <ComboBox x:Name="walletColorComboBox" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center"/>
+        <Label Content="Wallet Balance:" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Label x:Name="walletBalanceLabel" Grid.Column="2" Grid.Row="9" VerticalAlignment="Center" Content="$0.00"/>
+        <TextBox x:Name="walletAmountTextBox" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60"/>
+        <StackPanel Grid.Column="4" Grid.Row="9" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button x:Name="addMoneyButton" Content="+" Width="23" Height="23" Click="addMoneyButton_Click" Margin="0,0,4,0"/>
+            <Button x:Name="subtractMoneyButton" Content="-" Width="23" Height="23" Click="subtractMoneyButton_Click"/>
+        </StackPanel>
 
-        <Label Content="Checking Account Balance:" Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="checkingBalanceTextBox" Grid.Column="2" Grid.Row="11" VerticalAlignment="Center"/>
+        <Label Content="Account Balance:" Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Label x:Name="accountBalanceLabel" Grid.Column="2" Grid.Row="11" VerticalAlignment="Center" Content="$0.00"/>
+        <TextBox x:Name="accountAmountTextBox" Grid.Column="2" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60"/>
+        <StackPanel Grid.Column="4" Grid.Row="11" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button x:Name="addAccountMoneyButton" Content="+" Width="23" Height="23" Click="addAccountMoneyButton_Click" Margin="0,0,4,0"/>
+            <Button x:Name="subtractAccountMoneyButton" Content="-" Width="23" Height="23" Click="subtractAccountMoneyButton_Click"/>
+        </StackPanel>
 
-        <StackPanel Grid.Column="2" Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,4,4">
+        <StackPanel Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,4,4">
             <Button x:Name="okButton" Content="OK" Width="75" Height="23" IsDefault="True" Click="okButton_Click" Margin="0,0,4,0"/>
             <Button x:Name="cancelButton" Content="Cancel" Width="75" Height="23" IsCancel="True"/>
         </StackPanel>

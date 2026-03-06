@@ -12,7 +12,11 @@ namespace MoneyCollectors
         /// <returns>The money that was removed.</returns>
         public override decimal RemoveMoney(decimal amount)
         {
-            return base.RemoveMoney(amount);
+            // Unlock box.
+            decimal removedAmount = base.RemoveMoney(amount);
+
+            // Lock box.
+            return removedAmount;
         }
     }
 }

@@ -360,7 +360,7 @@ namespace Zoos
         }
 
         /// <summary>
-        /// Creates a new Como Zoo with default animals and guests.
+        /// Creates a new Como Zoo.
         /// </summary>
         /// <returns>The created zoo.</returns>
         public static Zoo NewZoo()
@@ -374,29 +374,6 @@ namespace Zoos
 
             // Set the birthing room temperature to its starting value.
             zoo.BirthingRoomTemperature = 77;
-
-            // Create and add animals.
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Pierre", 3, 25.2, Gender.Male));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Jackie", 4, 35.3, Gender.Female));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Platypus, "Patty", 2, 15.5, Gender.Female));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Hummingbird, "Harold", 1, 0.5, Gender.Male));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Chimpanzee, "Charlie", 5, 90.0, Gender.Male));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Eagle, "Emily", 3, 12.5, Gender.Female));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Kangaroo, "Kevin", 4, 110.0, Gender.Male));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Ostrich, "Oliver", 2, 250.0, Gender.Male));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Shark, "Steve", 6, 500.0, Gender.Male));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Squirrel, "Sammy", 1, 1.5, Gender.Female));
-            zoo.AddAnimal(AnimalFactory.CreateAnimal(AnimalType.Dingo, "Dolly", 3, 22.0, Gender.Female));
-
-            // Create guests.
-            IMoneyCollector gregAccount = new Account();
-            gregAccount.AddMoney(50m);
-            Guest greg = new Guest("Greg", 44, Gender.Male, gregAccount);
-            Guest darla = new Guest("Darla", 11, Gender.Female, greg.Wallet);
-
-            // Sell tickets and add guests.
-            zoo.AddGuest(greg, zoo.SellTicket(greg));
-            zoo.AddGuest(darla, zoo.SellTicket(darla));
 
             return zoo;
         }
