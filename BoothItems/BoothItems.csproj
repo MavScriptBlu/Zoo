@@ -45,6 +45,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoldItem.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="WaterBottle.cs" />
   </ItemGroup>
