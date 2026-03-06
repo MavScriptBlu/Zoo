@@ -66,6 +66,43 @@ namespace Animals
         }
 
         /// <summary>
+        /// Gets or sets the age of the animal.
+        /// </summary>
+        public int Age
+        {
+            get
+            {
+                return this.age;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("age", "Age must be 0 or greater.");
+                }
+
+                this.age = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the gender of the animal.
+        /// </summary>
+        public Gender Gender
+        {
+            get
+            {
+                return this.gender;
+            }
+
+            set
+            {
+                this.gender = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the name of the animal.
         /// </summary>
         public string Name
@@ -77,10 +114,12 @@ namespace Animals
 
             set
             {
-                if (name.Length > 0)
-                    this.name = value;
-                else
-                    throw new Exception("No Name");
+                if (value == null || value.Length == 0)
+                {
+                    throw new ArgumentException("Name must have a value.");
+                }
+
+                this.name = value;
             }
         }
 
@@ -94,8 +133,13 @@ namespace Animals
                 return this.weight;
             }
 
-            protected set
+            set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("weight", "Weight must be 0 or greater.");
+                }
+
                 this.weight = value;
             }
         }
