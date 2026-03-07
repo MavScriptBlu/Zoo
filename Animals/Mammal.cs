@@ -1,5 +1,7 @@
+using System;
 using Foods;
 using Reproducers;
+using Utilities;
 
 namespace Animals
 {
@@ -36,7 +38,27 @@ namespace Animals
         /// </summary>
         public override void Move()
         {
-            // Pace.
+            // Pace left or right.
+            if (this.XDirection == HorizontalDirection.Right)
+            {
+                this.XPosition += this.MoveDistance;
+
+                if (this.XPosition >= this.XPositionMax)
+                {
+                    this.XPosition = this.XPositionMax;
+                    this.XDirection = HorizontalDirection.Left;
+                }
+            }
+            else
+            {
+                this.XPosition -= this.MoveDistance;
+
+                if (this.XPosition <= 0)
+                {
+                    this.XPosition = 0;
+                    this.XDirection = HorizontalDirection.Right;
+                }
+            }
         }
 
         /// <summary>

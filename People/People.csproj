@@ -76,6 +76,10 @@
       <Project>{A7B8C9D0-7777-8888-9999-000011112222}</Project>
       <Name>MoneyCollectors</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CagedItems\CagedItems.csproj">
+      <Project>{A1B2C3D4-FFFF-EEEE-DDDD-000011112222}</Project>
+      <Name>CagedItems</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

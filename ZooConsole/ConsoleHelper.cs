@@ -1,6 +1,7 @@
 using System;
 using Accounts;
 using Animals;
+using BoothItems;
 using MoneyCollectors;
 using People;
 using Reproducers;
@@ -239,8 +240,21 @@ namespace ZooConsole
             Guest guest = new Guest(name, age, gender, account);
             guest.Wallet.AddMoney(walletBalance);
 
-            Ticket ticket = zoo.SellTicket(guest);
-            zoo.AddGuest(guest, ticket);
+            try
+            {
+                Ticket ticket = zoo.SellTicket(guest);
+                zoo.AddGuest(guest, ticket);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            catch (MissingItemException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
 
             ShowGuest(zoo, guest.Name);
         }

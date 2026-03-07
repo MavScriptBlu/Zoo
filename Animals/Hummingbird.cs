@@ -20,11 +20,23 @@ namespace Animals
         }
 
         /// <summary>
+        /// Gets the display size of the hummingbird.
+        /// </summary>
+        public override double DisplaySize
+        {
+            get
+            {
+                return 0.4;
+            }
+        }
+
+        /// <summary>
         /// Moves by hovering.
         /// </summary>
         public override void Move()
         {
-            // Hover.
+            // Hover (use base flying movement).
+            base.Move();
         }
     }
 }

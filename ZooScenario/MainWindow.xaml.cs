@@ -1,5 +1,7 @@
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using Animals;
 using BirthingRooms;
@@ -104,6 +106,10 @@ namespace ZooScenario
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (BoothItems.MissingItemException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -134,6 +140,135 @@ namespace ZooScenario
             catch (InvalidCastException)
             {
                 MessageBox.Show("Please select an animal type before adding an animal to the zoo.");
+            }
+        }
+
+        /// <summary>
+        /// Opens an animal window to edit the double-clicked animal.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void animalListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Animal animal = this.animalListBox.SelectedItem as Animal;
+
+            if (animal != null)
+            {
+                AnimalWindow animalWindow = new AnimalWindow(animal);
+                animalWindow.Owner = this;
+
+                if (animalWindow.ShowDialog() == true)
+                {
+                    this.PopulateAnimalListBox();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Opens a guest window to edit the double-clicked guest.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void guestListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Guest guest = this.guestListBox.SelectedItem as Guest;
+
+            if (guest != null)
+            {
+                GuestWindow guestWindow = new GuestWindow(guest);
+                guestWindow.Owner = this;
+
+                if (guestWindow.ShowDialog() == true)
+                {
+                    this.PopulateGuestListBox();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shows the cage for the selected animal.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void showCageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Animal animal = this.animalListBox.SelectedItem as Animal;
+
+            if (animal != null)
+            {
+                Cage cage = this.comoZoo.FindCage(animal.GetType());
+
+                if (cage != null)
+                {
+                    CageWindow cageWindow = new CageWindow(cage);
+                    cageWindow.Owner = this;
+                    cageWindow.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an animal to show its cage.");
+            }
+        }
+
+        /// <summary>
+        /// Allows the selected guest to adopt the selected animal.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void adoptAnimalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Guest guest = this.guestListBox.SelectedItem as Guest;
+            Animal animal = this.animalListBox.SelectedItem as Animal;
+
+            if (guest != null && animal != null)
+            {
+                if (guest.AdoptedAnimal == null)
+                {
+                    guest.AdoptedAnimal = animal;
+
+                    Cage cage = this.comoZoo.FindCage(animal.GetType());
+                    if (cage != null)
+                    {
+                        cage.Add(guest);
+                    }
+
+                    this.PopulateGuestListBox();
+                }
+                else
+                {
+                    MessageBox.Show(string.Format("{0} has already adopted an animal.", guest.Name));
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must select both a guest and an animal to adopt.");
+            }
+        }
+
+        /// <summary>
+        /// Removes the adoption of an animal from the selected guest.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void unadoptAnimalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Guest guest = this.guestListBox.SelectedItem as Guest;
+
+            if (guest != null && guest.AdoptedAnimal != null)
+            {
+                Cage cage = this.comoZoo.FindCage(guest.AdoptedAnimal.GetType());
+                if (cage != null)
+                {
+                    cage.Remove(guest);
+                }
+
+                guest.AdoptedAnimal = null;
+                this.PopulateGuestListBox();
+            }
+            else
+            {
+                MessageBox.Show("Please select a guest who has adopted an animal.");
             }
         }
 

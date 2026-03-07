@@ -1,5 +1,6 @@
 using Foods;
 using Reproducers;
+using Utilities;
 
 namespace Animals
 {
@@ -18,6 +19,17 @@ namespace Animals
             : base(name, age, weight, gender)
         {
             this.BabyWeightPercentage = 12.0;
+        }
+
+        /// <summary>
+        /// Gets the display size of the platypus.
+        /// </summary>
+        public override double DisplaySize
+        {
+            get
+            {
+                return 0.7;
+            }
         }
 
         /// <summary>
@@ -45,6 +57,50 @@ namespace Animals
         public override void Move()
         {
             // Swim. Note that there is a base method that paces, which we are intentionally avoiding.
+
+            // Swim horizontally.
+            if (this.XDirection == HorizontalDirection.Right)
+            {
+                this.XPosition += this.MoveDistance;
+
+                if (this.XPosition >= this.XPositionMax)
+                {
+                    this.XPosition = this.XPositionMax;
+                    this.XDirection = HorizontalDirection.Left;
+                }
+            }
+            else
+            {
+                this.XPosition -= this.MoveDistance;
+
+                if (this.XPosition <= 0)
+                {
+                    this.XPosition = 0;
+                    this.XDirection = HorizontalDirection.Right;
+                }
+            }
+
+            // Swim vertically.
+            if (this.YDirection == VerticalDirection.Down)
+            {
+                this.YPosition += this.MoveDistance;
+
+                if (this.YPosition >= this.YPositionMax)
+                {
+                    this.YPosition = this.YPositionMax;
+                    this.YDirection = VerticalDirection.Up;
+                }
+            }
+            else
+            {
+                this.YPosition -= this.MoveDistance;
+
+                if (this.YPosition <= 0)
+                {
+                    this.YPosition = 0;
+                    this.YDirection = VerticalDirection.Down;
+                }
+            }
         }
 
         /// <summary>

@@ -20,11 +20,23 @@ namespace Animals
         }
 
         /// <summary>
+        /// Gets the display size of the ostrich.
+        /// </summary>
+        public override double DisplaySize
+        {
+            get
+            {
+                return 1.2;
+            }
+        }
+
+        /// <summary>
         /// Moves by walking.
         /// </summary>
         public override void Move()
         {
-            // Walk.
+            // Walk (use base flying movement for position tracking).
+            base.Move();
         }
     }
 }

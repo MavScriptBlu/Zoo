@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EA7ED94A-6C63-4CEB-90EB-8E503C5D2795}</ProjectGuid>
+    <ProjectGuid>{F1E2D3C4-AAAA-BBBB-CCCC-111122223333}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BoothItems</RootNamespace>
-    <AssemblyName>BoothItems</AssemblyName>
+    <RootNamespace>Utilities</RootNamespace>
+    <AssemblyName>Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,22 +33,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MissingItemException.cs" />
-    <Compile Include="CouponBook.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="HorizontalDirection.cs" />
+    <Compile Include="VerticalDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SoldItem.cs" />
-    <Compile Include="Ticket.cs" />
-    <Compile Include="WaterBottle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

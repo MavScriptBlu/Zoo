@@ -1,13 +1,16 @@
+using System;
+using System.Timers;
+using CagedItems;
 using Foods;
 using Reproducers;
-using System;
+using Utilities;
 
 namespace Animals
 {
     /// <summary>
     /// The class which is used to represent an animal.
     /// </summary>
-    public abstract class Animal : IEater, IMover, IReproducer
+    public abstract class Animal : IEater, IMover, IReproducer, ICageable
     {
         /// <summary>
         /// The age of the animal.
@@ -40,6 +43,16 @@ namespace Animals
         private double weight;
 
         /// <summary>
+        /// The random number generator used for movement initialization.
+        /// </summary>
+        private static Random random = new Random(DateTime.Now.Millisecond);
+
+        /// <summary>
+        /// The timer that controls animal movement.
+        /// </summary>
+        private Timer moveTimer;
+
+        /// <summary>
         /// Initializes a new instance of the Animal class.
         /// </summary>
         /// <param name="name">The name of the animal.</param>
@@ -52,6 +65,18 @@ namespace Animals
             this.gender = gender;
             this.name = name;
             this.weight = weight;
+
+            // Randomize movement properties.
+            this.MoveDistance = random.Next(5, 16);
+            this.XPosition = random.NextDouble() * this.XPositionMax;
+            this.YPosition = random.NextDouble() * this.YPositionMax;
+            this.XDirection = random.Next(2) == 0 ? HorizontalDirection.Left : HorizontalDirection.Right;
+            this.YDirection = random.Next(2) == 0 ? VerticalDirection.Up : VerticalDirection.Down;
+
+            // Set up the movement timer.
+            this.moveTimer = new Timer(1000);
+            this.moveTimer.Elapsed += this.MoveHandler;
+            this.moveTimer.Start();
         }
 
         /// <summary>
@@ -145,6 +170,63 @@ namespace Animals
         }
 
         /// <summary>
+        /// Gets or sets the horizontal position of the animal.
+        /// </summary>
+        public double XPosition { get; set; }
+
+        /// <summary>
+        /// Gets or sets the vertical position of the animal.
+        /// </summary>
+        public double YPosition { get; set; }
+
+        /// <summary>
+        /// Gets the maximum horizontal position of the animal.
+        /// </summary>
+        public double XPositionMax { get; } = 800;
+
+        /// <summary>
+        /// Gets the maximum vertical position of the animal.
+        /// </summary>
+        public double YPositionMax { get; } = 400;
+
+        /// <summary>
+        /// Gets or sets the horizontal direction of the animal.
+        /// </summary>
+        public HorizontalDirection XDirection { get; set; }
+
+        /// <summary>
+        /// Gets or sets the vertical direction of the animal.
+        /// </summary>
+        public VerticalDirection YDirection { get; set; }
+
+        /// <summary>
+        /// Gets or sets the distance the animal moves per movement cycle.
+        /// </summary>
+        public double MoveDistance { get; set; }
+
+        /// <summary>
+        /// Gets the display size of the animal.
+        /// </summary>
+        public virtual double DisplaySize
+        {
+            get
+            {
+                return 1.0;
+            }
+        }
+
+        /// <summary>
+        /// Gets the resource key for the animal's image.
+        /// </summary>
+        public string ResourceKey
+        {
+            get
+            {
+                return this.GetType().Name;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the weight of a newborn baby (as a percentage of the parent's weight).
         /// </summary>
         protected double BabyWeightPercentage
@@ -216,6 +298,22 @@ namespace Animals
         public override string ToString()
         {
             return this.name + ": " + this.GetType().Name + " (" + this.age + ", " + this.Weight + ")";
+        }
+
+        /// <summary>
+        /// Handles the move timer elapsed event.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">The arguments for the event.</param>
+        private void MoveHandler(object sender, ElapsedEventArgs e)
+        {
+#if DEBUG
+            this.moveTimer.Stop();
+#endif
+            this.Move();
+#if DEBUG
+            this.moveTimer.Start();
+#endif
         }
     }
 }

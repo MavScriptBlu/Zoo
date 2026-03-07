@@ -33,7 +33,16 @@ namespace People
         /// <returns>The coupon book.</returns>
         public CouponBook GiveFreeCouponBook()
         {
-            CouponBook couponBook = this.Attendant.FindItem(this.Items, typeof(CouponBook)) as CouponBook;
+            CouponBook couponBook = null;
+
+            try
+            {
+                couponBook = this.Attendant.FindItem(this.Items, typeof(CouponBook)) as CouponBook;
+            }
+            catch (MissingItemException ex)
+            {
+                throw new MissingItemException("Coupon book could not be found.", ex);
+            }
 
             return couponBook;
         }
@@ -44,7 +53,16 @@ namespace People
         /// <returns>The map.</returns>
         public Map GiveFreeMap()
         {
-            Map map = this.Attendant.FindItem(this.Items, typeof(Map)) as Map;
+            Map map = null;
+
+            try
+            {
+                map = this.Attendant.FindItem(this.Items, typeof(Map)) as Map;
+            }
+            catch (MissingItemException ex)
+            {
+                throw new MissingItemException("Map could not be found.", ex);
+            }
 
             return map;
         }

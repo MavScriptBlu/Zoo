@@ -110,7 +110,14 @@ namespace People
             // Only find a ticket if the payment is sufficient.
             if (payment >= this.ticketPrice)
             {
-                ticket = this.Attendant.FindItem(this.Items, typeof(Ticket)) as Ticket;
+                try
+                {
+                    ticket = this.Attendant.FindItem(this.Items, typeof(Ticket)) as Ticket;
+                }
+                catch (MissingItemException ex)
+                {
+                    throw new MissingItemException("Ticket could not be found.", ex);
+                }
 
                 // If a ticket was found, add the payment to the money balance.
                 if (ticket != null)
@@ -134,7 +141,14 @@ namespace People
             // Only find a water bottle if the payment is sufficient.
             if (payment >= this.waterBottlePrice)
             {
-                waterBottle = this.Attendant.FindItem(this.Items, typeof(WaterBottle)) as WaterBottle;
+                try
+                {
+                    waterBottle = this.Attendant.FindItem(this.Items, typeof(WaterBottle)) as WaterBottle;
+                }
+                catch (MissingItemException ex)
+                {
+                    throw new MissingItemException("Water bottle could not be found.", ex);
+                }
 
                 // If a water bottle was found, add the payment to the money balance.
                 if (waterBottle != null)

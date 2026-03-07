@@ -18,5 +18,16 @@ namespace Animals
         {
             this.BabyWeightPercentage = 18.0;
         }
+
+        /// <summary>
+        /// Gets the display size of the shark.
+        /// </summary>
+        public override double DisplaySize
+        {
+            get
+            {
+                return 1.5;
+            }
+        }
     }
 }

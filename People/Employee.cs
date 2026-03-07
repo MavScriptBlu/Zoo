@@ -114,6 +114,11 @@ namespace People
                 }
             }
 
+            if (item == null)
+            {
+                throw new MissingItemException(string.Format("Item of type {0} could not be found.", type.Name));
+            }
+
             return item;
         }
 

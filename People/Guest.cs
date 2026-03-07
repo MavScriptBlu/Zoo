@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Animals;
 using BoothItems;
+using CagedItems;
 using Foods;
 using MoneyCollectors;
 using Reproducers;
@@ -12,7 +14,7 @@ namespace People
     /// <summary>
     /// The class which is used to represent a guest.
     /// </summary>
-    public class Guest : IEater
+    public class Guest : IEater, ICageable
     {
         /// <summary>
         /// The age of the guest.
@@ -127,6 +129,43 @@ namespace People
                 }
 
                 this.name = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the animal the guest has adopted.
+        /// </summary>
+        public Animal AdoptedAnimal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the horizontal position of the guest.
+        /// </summary>
+        public double XPosition { get; set; }
+
+        /// <summary>
+        /// Gets or sets the vertical position of the guest.
+        /// </summary>
+        public double YPosition { get; set; }
+
+        /// <summary>
+        /// Gets the display size of the guest.
+        /// </summary>
+        public double DisplaySize
+        {
+            get
+            {
+                return 0.6;
+            }
+        }
+
+        /// <summary>
+        /// Gets the resource key for the guest's image.
+        /// </summary>
+        public string ResourceKey
+        {
+            get
+            {
+                return "Guest";
             }
         }
 

@@ -56,6 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CageWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="AnimalWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +72,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="CageWindow.xaml.cs">
+      <DependentUpon>CageWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="AnimalWindow.xaml.cs">
       <DependentUpon>AnimalWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -152,6 +160,14 @@
     <ProjectReference Include="..\Zoos\Zoos.csproj">
       <Project>{d4e5f6a7-4444-5555-6666-777788889999}</Project>
       <Name>Zoos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CagedItems\CagedItems.csproj">
+      <Project>{A1B2C3D4-FFFF-EEEE-DDDD-000011112222}</Project>
+      <Name>CagedItems</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{F1E2D3C4-AAAA-BBBB-CCCC-111122223333}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

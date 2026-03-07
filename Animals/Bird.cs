@@ -1,4 +1,5 @@
 using Reproducers;
+using Utilities;
 
 namespace Animals
 {
@@ -43,7 +44,49 @@ namespace Animals
         /// </summary>
         public override void Move()
         {
-            // Fly.
+            // Fly horizontally.
+            if (this.XDirection == HorizontalDirection.Right)
+            {
+                this.XPosition += this.MoveDistance;
+
+                if (this.XPosition >= this.XPositionMax)
+                {
+                    this.XPosition = this.XPositionMax;
+                    this.XDirection = HorizontalDirection.Left;
+                }
+            }
+            else
+            {
+                this.XPosition -= this.MoveDistance;
+
+                if (this.XPosition <= 0)
+                {
+                    this.XPosition = 0;
+                    this.XDirection = HorizontalDirection.Right;
+                }
+            }
+
+            // Fly vertically.
+            if (this.YDirection == VerticalDirection.Down)
+            {
+                this.YPosition += this.MoveDistance;
+
+                if (this.YPosition >= this.YPositionMax)
+                {
+                    this.YPosition = this.YPositionMax;
+                    this.YDirection = VerticalDirection.Up;
+                }
+            }
+            else
+            {
+                this.YPosition -= this.MoveDistance;
+
+                if (this.YPosition <= 0)
+                {
+                    this.YPosition = 0;
+                    this.YDirection = VerticalDirection.Down;
+                }
+            }
         }
 
         /// <summary>

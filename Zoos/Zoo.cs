@@ -4,6 +4,7 @@ using Accounts;
 using Animals;
 using BirthingRooms;
 using BoothItems;
+using CagedItems;
 using MoneyCollectors;
 using People;
 using Reproducers;
@@ -67,6 +68,11 @@ namespace Zoos
         private GivingBooth informationBooth;
 
         /// <summary>
+        /// The list of cages in the zoo.
+        /// </summary>
+        private List<Cage> cages;
+
+        /// <summary>
         /// Initializes a new instance of the Zoo class.
         /// </summary>
         /// <param name="name">The name of the zoo.</param>
@@ -91,6 +97,13 @@ namespace Zoos
             this.ticketBooth = new MoneyCollectingBooth(attendant, ticketPrice, waterBottlePrice, new MoneyBox());
             this.ticketBooth.AddMoney(boothMoneyBalance);
             this.informationBooth = new GivingBooth(attendant);
+            this.cages = new List<Cage>();
+
+            // Create a cage for each animal type.
+            foreach (AnimalType animalType in Enum.GetValues(typeof(AnimalType)))
+            {
+                this.cages.Add(new Cage(animalType, 800, 400));
+            }
         }
 
         /// <summary>
@@ -175,20 +188,49 @@ namespace Zoos
         }
 
         /// <summary>
-        /// Adds an animal to the zoo.
+        /// Adds an animal to the zoo and its appropriate cage.
         /// </summary>
         /// <param name="animal">The animal to add.</param>
         public void AddAnimal(Animal animal)
         {
             this.animals.Add(animal);
+
+            Cage cage = this.FindCage(animal.GetType());
+
+            if (cage != null)
+            {
+                cage.Add(animal);
+            }
         }
 
         /// <summary>
-        /// Removes an animal from the zoo.
+        /// Removes an animal from the zoo and its cage.
         /// </summary>
         /// <param name="animal">The animal to remove.</param>
         public void RemoveAnimal(Animal animal)
         {
+            // Remove from any guest's adoption.
+            foreach (Guest guest in this.guests)
+            {
+                if (guest.AdoptedAnimal == animal)
+                {
+                    Cage cage = this.FindCage(animal.GetType());
+                    if (cage != null)
+                    {
+                        cage.Remove(guest);
+                    }
+
+                    guest.AdoptedAnimal = null;
+                }
+            }
+
+            // Remove from cage.
+            Cage animalCage = this.FindCage(animal.GetType());
+            if (animalCage != null)
+            {
+                animalCage.Remove(animal);
+            }
+
             this.animals.Remove(animal);
         }
 
@@ -198,6 +240,18 @@ namespace Zoos
         /// <param name="guest">The guest to remove.</param>
         public void RemoveGuest(Guest guest)
         {
+            // If the guest has adopted an animal, remove them from the cage.
+            if (guest.AdoptedAnimal != null)
+            {
+                Cage cage = this.FindCage(guest.AdoptedAnimal.GetType());
+                if (cage != null)
+                {
+                    cage.Remove(guest);
+                }
+
+                guest.AdoptedAnimal = null;
+            }
+
             this.guests.Remove(guest);
         }
 
@@ -316,6 +370,47 @@ namespace Zoos
         }
 
         /// <summary>
+        /// Finds a cage for the specified animal type.
+        /// </summary>
+        /// <param name="type">The type of the animal.</param>
+        /// <returns>The matching cage.</returns>
+        public Cage FindCage(Type type)
+        {
+            Cage result = null;
+
+            foreach (Cage cage in this.cages)
+            {
+                if (this.ConvertAnimalTypeToType(cage.AnimalType) == type)
+                {
+                    result = cage;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets all animals of the specified type.
+        /// </summary>
+        /// <param name="type">The type of animal to retrieve.</param>
+        /// <returns>A list of all matching animals.</returns>
+        public IEnumerable<Animal> GetAnimals(Type type)
+        {
+            List<Animal> result = new List<Animal>();
+
+            foreach (Animal animal in this.animals)
+            {
+                if (animal.GetType() == type)
+                {
+                    result.Add(animal);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Finds a guest based on name.
         /// </summary>
         /// <param name="name">The name of the guest to find.</param>
@@ -376,6 +471,57 @@ namespace Zoos
             zoo.BirthingRoomTemperature = 77;
 
             return zoo;
+        }
+
+        /// <summary>
+        /// Converts an AnimalType enum value to its corresponding Type.
+        /// </summary>
+        /// <param name="animalType">The animal type to convert.</param>
+        /// <returns>The corresponding Type.</returns>
+        private Type ConvertAnimalTypeToType(AnimalType animalType)
+        {
+            Type result = null;
+
+            switch (animalType)
+            {
+                case AnimalType.Chimpanzee:
+                    result = typeof(Chimpanzee);
+                    break;
+
+                case AnimalType.Dingo:
+                    result = typeof(Dingo);
+                    break;
+
+                case AnimalType.Eagle:
+                    result = typeof(Eagle);
+                    break;
+
+                case AnimalType.Hummingbird:
+                    result = typeof(Hummingbird);
+                    break;
+
+                case AnimalType.Kangaroo:
+                    result = typeof(Kangaroo);
+                    break;
+
+                case AnimalType.Ostrich:
+                    result = typeof(Ostrich);
+                    break;
+
+                case AnimalType.Platypus:
+                    result = typeof(Platypus);
+                    break;
+
+                case AnimalType.Shark:
+                    result = typeof(Shark);
+                    break;
+
+                case AnimalType.Squirrel:
+                    result = typeof(Squirrel);
+                    break;
+            }
+
+            return result;
         }
     }
 }
