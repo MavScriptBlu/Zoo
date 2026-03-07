@@ -15,8 +15,13 @@ namespace Animals
         /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
         /// <param name="gender">The gender of the animal.</param>
-        public Chimpanzee(string name, int age, double weight, Gender gender)
-            : base(name, age, weight, gender)
+        public Chimpanzee(string name, double weight, Gender gender)
+            : this(0, name, weight, gender)
+        {
+        }
+
+        public Chimpanzee(int age, string name, double weight, Gender gender)
+            : base(age, name, weight, gender)
         {
             this.BabyWeightPercentage = 10.0;
         }
@@ -57,6 +62,7 @@ namespace Animals
         public override void Move()
         {
             // Climb.
+            base.Move();
         }
     }
 }

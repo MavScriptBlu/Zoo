@@ -80,7 +80,7 @@ namespace ZooScenario
         /// </summary>
         private void DrawAllItems()
         {
-            this.animalCanvas.Children.Clear();
+            this.cageGrid.Children.Clear();
 
             foreach (ICageable item in this.cage.CagedItems)
             {
@@ -94,13 +94,10 @@ namespace ZooScenario
         /// <param name="item">The item to draw.</param>
         private void DrawItem(ICageable item)
         {
-            Viewbox viewbox = this.GetViewBox(item.ResourceKey, item.DisplaySize);
+            Viewbox viewbox = this.GetViewBox(item.ResourceKey, item.DisplaySize, item.XPosition, item.YPosition);
 
             if (viewbox != null)
             {
-                Canvas.SetLeft(viewbox, item.XPosition);
-                Canvas.SetTop(viewbox, item.YPosition);
-
                 // Flip image if animal is moving left.
                 if (item is Animal)
                 {
@@ -112,7 +109,7 @@ namespace ZooScenario
                     }
                 }
 
-                this.animalCanvas.Children.Add(viewbox);
+                this.cageGrid.Children.Add(viewbox);
             }
         }
 
@@ -120,27 +117,41 @@ namespace ZooScenario
         /// Gets a viewbox containing the resource image for the specified key.
         /// </summary>
         /// <param name="resourceKey">The resource key to look up.</param>
-        /// <param name="displaySize">The display size scale factor.</param>
+        /// <param name="displayScale">The display scale factor.</param>
+        /// <param name="xPosition">The horizontal position of the item.</param>
+        /// <param name="yPosition">The vertical position of the item.</param>
         /// <returns>A viewbox containing the resource, or null if not found.</returns>
-        private Viewbox GetViewBox(string resourceKey, double displaySize)
+        private Viewbox GetViewBox(string resourceKey, double displayScale, int xPosition, int yPosition)
         {
-            Canvas resourceCanvas = Application.Current.Resources[resourceKey] as Canvas;
+            Canvas canvas = Application.Current.Resources[resourceKey] as Canvas;
 
-            if (resourceCanvas == null)
+            if (canvas == null)
             {
                 return null;
             }
 
             // Clone the canvas using XAML serialization.
-            string xaml = XamlWriter.Save(resourceCanvas);
+            string xaml = XamlWriter.Save(canvas);
             Canvas clonedCanvas = XamlReader.Parse(xaml) as Canvas;
 
-            Viewbox viewbox = new Viewbox();
-            viewbox.Child = clonedCanvas;
-            viewbox.Width = 100 * displaySize;
-            viewbox.Height = 100 * displaySize;
+            Viewbox finishedViewBox = new Viewbox();
+            double imageRatio = canvas.Width / canvas.Height;
+            double itemWidth = this.cageGrid.ActualWidth * 0.2 * displayScale;
+            double itemHeight = itemWidth / imageRatio;
+            finishedViewBox.Width = itemWidth;
+            finishedViewBox.Height = itemHeight;
 
-            return viewbox;
+            double xPercent = (this.cageGrid.ActualWidth - itemWidth) / 800;
+            double yPercent = (this.cageGrid.ActualHeight - itemHeight) / 400;
+            int posX = Convert.ToInt32(xPosition * xPercent);
+            int posY = Convert.ToInt32(yPosition * yPercent);
+
+            finishedViewBox.Margin = new Thickness(posX, posY, 0, 0);
+            finishedViewBox.HorizontalAlignment = HorizontalAlignment.Left;
+            finishedViewBox.VerticalAlignment = VerticalAlignment.Top;
+            finishedViewBox.Child = clonedCanvas;
+
+            return finishedViewBox;
         }
     }
 }

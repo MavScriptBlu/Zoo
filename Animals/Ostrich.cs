@@ -13,8 +13,13 @@ namespace Animals
         /// <param name="name">The name of the animal.</param>
         /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
-        public Ostrich(string name, int age, double weight, Gender gender)
-            : base(name, age, weight, gender)
+        public Ostrich(string name, double weight, Gender gender)
+            : this(0, name, weight, gender)
+        {
+        }
+
+        public Ostrich(int age, string name, double weight, Gender gender)
+            : base(age, name, weight, gender)
         {
             this.BabyWeightPercentage = 30.0;
         }
@@ -26,7 +31,7 @@ namespace Animals
         {
             get
             {
-                return 1.2;
+                return this.Age == 0 ? 0.4 : 0.8;
             }
         }
 

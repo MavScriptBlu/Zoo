@@ -56,10 +56,21 @@ namespace Animals
         /// Initializes a new instance of the Animal class.
         /// </summary>
         /// <param name="name">The name of the animal.</param>
-        /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
         /// <param name="gender">The gender of the animal.</param>
-        public Animal(string name, int age, double weight, Gender gender)
+        public Animal(string name, double weight, Gender gender)
+            : this(0, name, weight, gender)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Animal class.
+        /// </summary>
+        /// <param name="age">The age of the animal.</param>
+        /// <param name="name">The name of the animal.</param>
+        /// <param name="weight">The weight of the animal (in pounds).</param>
+        /// <param name="gender">The gender of the animal.</param>
+        public Animal(int age, string name, double weight, Gender gender)
         {
             this.age = age;
             this.gender = gender;
@@ -67,9 +78,9 @@ namespace Animals
             this.weight = weight;
 
             // Randomize movement properties.
-            this.MoveDistance = random.Next(5, 16);
-            this.XPosition = random.NextDouble() * this.XPositionMax;
-            this.YPosition = random.NextDouble() * this.YPositionMax;
+            this.MoveDistance = random.Next(5, 15);
+            this.XPosition = random.Next(1, this.XPositionMax + 1);
+            this.YPosition = random.Next(1, this.YPositionMax + 1);
             this.XDirection = random.Next(2) == 0 ? HorizontalDirection.Left : HorizontalDirection.Right;
             this.YDirection = random.Next(2) == 0 ? VerticalDirection.Up : VerticalDirection.Down;
 
@@ -172,22 +183,22 @@ namespace Animals
         /// <summary>
         /// Gets or sets the horizontal position of the animal.
         /// </summary>
-        public double XPosition { get; set; }
+        public int XPosition { get; set; }
 
         /// <summary>
         /// Gets or sets the vertical position of the animal.
         /// </summary>
-        public double YPosition { get; set; }
+        public int YPosition { get; set; }
 
         /// <summary>
         /// Gets the maximum horizontal position of the animal.
         /// </summary>
-        public double XPositionMax { get; } = 800;
+        public int XPositionMax { get; } = 800;
 
         /// <summary>
         /// Gets the maximum vertical position of the animal.
         /// </summary>
-        public double YPositionMax { get; } = 400;
+        public int YPositionMax { get; } = 400;
 
         /// <summary>
         /// Gets or sets the horizontal direction of the animal.
@@ -202,7 +213,7 @@ namespace Animals
         /// <summary>
         /// Gets or sets the distance the animal moves per movement cycle.
         /// </summary>
-        public double MoveDistance { get; set; }
+        public int MoveDistance { get; set; }
 
         /// <summary>
         /// Gets the display size of the animal.
@@ -211,7 +222,7 @@ namespace Animals
         {
             get
             {
-                return 1.0;
+                return this.age == 0 ? 0.5 : 1.0;
             }
         }
 
@@ -222,7 +233,7 @@ namespace Animals
         {
             get
             {
-                return this.GetType().Name;
+                return this.GetType().Name + (this.age == 0 ? "Baby" : "Adult");
             }
         }
 
@@ -279,8 +290,11 @@ namespace Animals
         /// <returns>The resulting baby reproducer.</returns>
         public virtual IReproducer Reproduce()
         {
-            // Create a baby reproducer.
-            Animal baby = Activator.CreateInstance(this.GetType(), string.Empty, 0, this.Weight * (this.BabyWeightPercentage / 100), this.gender) as Animal;
+            // Calculate baby weight.
+            double babyWeight = this.Weight * (this.BabyWeightPercentage / 100);
+
+            // Create a baby reproducer using the no-age constructor.
+            Animal baby = Activator.CreateInstance(this.GetType(), string.Empty, babyWeight, this.gender) as Animal;
 
             // Reduce mother's weight by 25 percent more than the value of the baby's weight.
             this.Weight -= baby.Weight * 1.25;

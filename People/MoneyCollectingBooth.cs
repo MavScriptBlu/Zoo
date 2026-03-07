@@ -1,3 +1,4 @@
+using System;
 using BoothItems;
 using MoneyCollectors;
 
@@ -114,9 +115,9 @@ namespace People
                 {
                     ticket = this.Attendant.FindItem(this.Items, typeof(Ticket)) as Ticket;
                 }
-                catch (MissingItemException ex)
+                catch (Exception ex)
                 {
-                    throw new MissingItemException("Ticket could not be found.", ex);
+                    throw new NullReferenceException("Ticket not found.", ex);
                 }
 
                 // If a ticket was found, add the payment to the money balance.
@@ -145,9 +146,9 @@ namespace People
                 {
                     waterBottle = this.Attendant.FindItem(this.Items, typeof(WaterBottle)) as WaterBottle;
                 }
-                catch (MissingItemException ex)
+                catch (Exception ex)
                 {
-                    throw new MissingItemException("Water bottle could not be found.", ex);
+                    throw new NullReferenceException("Water bottle not found.", ex);
                 }
 
                 // If a water bottle was found, add the payment to the money balance.

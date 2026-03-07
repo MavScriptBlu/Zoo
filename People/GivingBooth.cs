@@ -39,9 +39,9 @@ namespace People
             {
                 couponBook = this.Attendant.FindItem(this.Items, typeof(CouponBook)) as CouponBook;
             }
-            catch (MissingItemException ex)
+            catch (Exception ex)
             {
-                throw new MissingItemException("Coupon book could not be found.", ex);
+                throw new NullReferenceException("Coupon book not found.", ex);
             }
 
             return couponBook;
@@ -59,9 +59,9 @@ namespace People
             {
                 map = this.Attendant.FindItem(this.Items, typeof(Map)) as Map;
             }
-            catch (MissingItemException ex)
+            catch (Exception ex)
             {
-                throw new MissingItemException("Map could not be found.", ex);
+                throw new NullReferenceException("Map not found.", ex);
             }
 
             return map;

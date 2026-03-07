@@ -13,8 +13,13 @@ namespace Animals
         /// <param name="name">The name of the animal.</param>
         /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
-        public Eagle(string name, int age, double weight, Gender gender)
-            : base(name, age, weight, gender)
+        public Eagle(string name, double weight, Gender gender)
+            : this(0, name, weight, gender)
+        {
+        }
+
+        public Eagle(int age, string name, double weight, Gender gender)
+            : base(age, name, weight, gender)
         {
             this.BabyWeightPercentage = 25.0;
         }

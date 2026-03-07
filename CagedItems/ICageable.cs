@@ -8,12 +8,12 @@ namespace CagedItems
         /// <summary>
         /// Gets or sets the horizontal position of the item.
         /// </summary>
-        double XPosition { get; set; }
+        int XPosition { get; set; }
 
         /// <summary>
         /// Gets or sets the vertical position of the item.
         /// </summary>
-        double YPosition { get; set; }
+        int YPosition { get; set; }
 
         /// <summary>
         /// Gets the display size of the item.

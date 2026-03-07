@@ -4,8 +4,17 @@
              xmlns:local="clr-namespace:ZooScenario"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!-- Chimpanzee -->
-        <Canvas x:Key="Chimpanzee" Width="100" Height="100">
+        <!-- Chimpanzee Baby -->
+        <Canvas x:Key="ChimpanzeeBaby" Width="100" Height="100">
+            <Ellipse Fill="#8B4513" Width="35" Height="35" Canvas.Left="32" Canvas.Top="15"/>
+            <Ellipse Fill="#8B4513" Width="45" Height="35" Canvas.Left="27" Canvas.Top="45"/>
+            <Ellipse Fill="#D2691E" Width="15" Height="10" Canvas.Left="42" Canvas.Top="30"/>
+            <Ellipse Fill="#8B4513" Width="10" Height="20" Canvas.Left="10" Canvas.Top="50"/>
+            <Ellipse Fill="#8B4513" Width="10" Height="20" Canvas.Left="80" Canvas.Top="50"/>
+        </Canvas>
+
+        <!-- Chimpanzee Adult -->
+        <Canvas x:Key="ChimpanzeeAdult" Width="100" Height="100">
             <Ellipse Fill="#8B4513" Width="50" Height="50" Canvas.Left="25" Canvas.Top="10"/>
             <Ellipse Fill="#8B4513" Width="60" Height="50" Canvas.Left="20" Canvas.Top="50"/>
             <Ellipse Fill="#D2691E" Width="20" Height="15" Canvas.Left="40" Canvas.Top="30"/>
@@ -13,8 +22,17 @@
             <Ellipse Fill="#8B4513" Width="15" Height="30" Canvas.Left="80" Canvas.Top="55"/>
         </Canvas>
 
-        <!-- Dingo -->
-        <Canvas x:Key="Dingo" Width="100" Height="100">
+        <!-- Dingo Baby -->
+        <Canvas x:Key="DingoBaby" Width="100" Height="100">
+            <Ellipse Fill="#C8963F" Width="45" Height="30" Canvas.Left="27" Canvas.Top="40"/>
+            <Ellipse Fill="#C8963F" Width="25" Height="25" Canvas.Left="17" Canvas.Top="25"/>
+            <Ellipse Fill="#C8963F" Width="4" Height="18" Canvas.Left="70" Canvas.Top="28"/>
+            <Ellipse Fill="#C8963F" Width="4" Height="18" Canvas.Left="76" Canvas.Top="28"/>
+            <Rectangle Fill="#C8963F" Width="8" Height="28" Canvas.Left="80" Canvas.Top="55"/>
+        </Canvas>
+
+        <!-- Dingo Adult -->
+        <Canvas x:Key="DingoAdult" Width="100" Height="100">
             <Ellipse Fill="#C8963F" Width="60" Height="40" Canvas.Left="20" Canvas.Top="35"/>
             <Ellipse Fill="#C8963F" Width="35" Height="35" Canvas.Left="10" Canvas.Top="20"/>
             <Ellipse Fill="#C8963F" Width="5" Height="25" Canvas.Left="75" Canvas.Top="25"/>
@@ -22,8 +40,18 @@
             <Rectangle Fill="#C8963F" Width="10" Height="35" Canvas.Left="85" Canvas.Top="55"/>
         </Canvas>
 
-        <!-- Eagle -->
-        <Canvas x:Key="Eagle" Width="100" Height="100">
+        <!-- Eagle Baby -->
+        <Canvas x:Key="EagleBaby" Width="100" Height="100">
+            <Ellipse Fill="#4A4A4A" Width="22" Height="22" Canvas.Left="39" Canvas.Top="15"/>
+            <Ellipse Fill="#4A4A4A" Width="38" Height="25" Canvas.Left="31" Canvas.Top="38"/>
+            <Polygon Fill="#4A4A4A" Points="5,60 25,48 25,60"/>
+            <Polygon Fill="#4A4A4A" Points="95,60 75,48 75,60"/>
+            <Ellipse Fill="White" Width="9" Height="9" Canvas.Left="46" Canvas.Top="18"/>
+            <Ellipse Fill="Gold" Width="8" Height="6" Canvas.Left="46" Canvas.Top="32"/>
+        </Canvas>
+
+        <!-- Eagle Adult -->
+        <Canvas x:Key="EagleAdult" Width="100" Height="100">
             <Ellipse Fill="#4A4A4A" Width="30" Height="30" Canvas.Left="35" Canvas.Top="10"/>
             <Ellipse Fill="#4A4A4A" Width="50" Height="35" Canvas.Left="25" Canvas.Top="35"/>
             <Polygon Fill="#4A4A4A" Points="0,60 25,45 25,60"/>
@@ -32,8 +60,17 @@
             <Ellipse Fill="Gold" Width="10" Height="8" Canvas.Left="45" Canvas.Top="30"/>
         </Canvas>
 
-        <!-- Hummingbird -->
-        <Canvas x:Key="Hummingbird" Width="100" Height="100">
+        <!-- Hummingbird Baby -->
+        <Canvas x:Key="HummingbirdBaby" Width="100" Height="100">
+            <Ellipse Fill="#00AA88" Width="18" Height="14" Canvas.Left="41" Canvas.Top="41"/>
+            <Ellipse Fill="#00AA88" Width="11" Height="11" Canvas.Left="44" Canvas.Top="30"/>
+            <Polygon Fill="#88DDCC" Points="15,43 41,49 15,55"/>
+            <Polygon Fill="#88DDCC" Points="85,43 59,49 85,55"/>
+            <Rectangle Fill="#00AA88" Width="2" Height="15" Canvas.Left="49" Canvas.Top="55"/>
+        </Canvas>
+
+        <!-- Hummingbird Adult -->
+        <Canvas x:Key="HummingbirdAdult" Width="100" Height="100">
             <Ellipse Fill="#00AA88" Width="25" Height="20" Canvas.Left="38" Canvas.Top="38"/>
             <Ellipse Fill="#00AA88" Width="15" Height="15" Canvas.Left="43" Canvas.Top="25"/>
             <Polygon Fill="#88DDCC" Points="10,40 38,48 10,55"/>
@@ -41,8 +78,17 @@
             <Rectangle Fill="#00AA88" Width="3" Height="20" Canvas.Left="49" Canvas.Top="55"/>
         </Canvas>
 
-        <!-- Kangaroo -->
-        <Canvas x:Key="Kangaroo" Width="100" Height="100">
+        <!-- Kangaroo Baby -->
+        <Canvas x:Key="KangarooBaby" Width="100" Height="100">
+            <Ellipse Fill="#C8963F" Width="22" Height="18" Canvas.Left="39" Canvas.Top="15"/>
+            <Ellipse Fill="#C8963F" Width="25" Height="38" Canvas.Left="37" Canvas.Top="33"/>
+            <Ellipse Fill="#C8963F" Width="7" Height="26" Canvas.Left="25" Canvas.Top="57"/>
+            <Ellipse Fill="#C8963F" Width="14" Height="8" Canvas.Left="62" Canvas.Top="75"/>
+            <Ellipse Fill="#C8963F" Width="6" Height="30" Canvas.Left="78" Canvas.Top="43"/>
+        </Canvas>
+
+        <!-- Kangaroo Adult -->
+        <Canvas x:Key="KangarooAdult" Width="100" Height="100">
             <Ellipse Fill="#C8963F" Width="30" Height="25" Canvas.Left="35" Canvas.Top="10"/>
             <Ellipse Fill="#C8963F" Width="35" Height="50" Canvas.Left="33" Canvas.Top="30"/>
             <Ellipse Fill="#C8963F" Width="10" Height="35" Canvas.Left="20" Canvas.Top="55"/>
@@ -50,8 +96,17 @@
             <Ellipse Fill="#C8963F" Width="8" Height="40" Canvas.Left="78" Canvas.Top="40"/>
         </Canvas>
 
-        <!-- Ostrich -->
-        <Canvas x:Key="Ostrich" Width="100" Height="100">
+        <!-- Ostrich Baby -->
+        <Canvas x:Key="OstrichBaby" Width="100" Height="100">
+            <Ellipse Fill="#4A4A4A" Width="22" Height="22" Canvas.Left="39" Canvas.Top="10"/>
+            <Ellipse Fill="#4A4A4A" Width="30" Height="38" Canvas.Left="35" Canvas.Top="43"/>
+            <Ellipse Fill="Tan" Width="6" Height="22" Canvas.Left="47" Canvas.Top="13"/>
+            <Rectangle Fill="#808080" Width="6" Height="26" Canvas.Left="37" Canvas.Top="78"/>
+            <Rectangle Fill="#808080" Width="6" Height="26" Canvas.Left="57" Canvas.Top="78"/>
+        </Canvas>
+
+        <!-- Ostrich Adult -->
+        <Canvas x:Key="OstrichAdult" Width="100" Height="100">
             <Ellipse Fill="#4A4A4A" Width="30" Height="30" Canvas.Left="35" Canvas.Top="5"/>
             <Ellipse Fill="#4A4A4A" Width="40" Height="50" Canvas.Left="30" Canvas.Top="40"/>
             <Ellipse Fill="Tan" Width="8" Height="30" Canvas.Left="46" Canvas.Top="10"/>
@@ -59,16 +114,33 @@
             <Rectangle Fill="#808080" Width="8" Height="35" Canvas.Left="55" Canvas.Top="85"/>
         </Canvas>
 
-        <!-- Platypus -->
-        <Canvas x:Key="Platypus" Width="100" Height="100">
+        <!-- Platypus Baby -->
+        <Canvas x:Key="PlatypusBaby" Width="100" Height="100">
+            <Ellipse Fill="#8B4513" Width="45" Height="22" Canvas.Left="27" Canvas.Top="38"/>
+            <Ellipse Fill="#8B4513" Width="18" Height="15" Canvas.Left="15" Canvas.Top="43"/>
+            <Ellipse Fill="#4A8FB5" Width="22" Height="9" Canvas.Left="10" Canvas.Top="46"/>
+            <Rectangle Fill="#4A4A4A" Width="11" Height="15" Canvas.Left="74" Canvas.Top="62"/>
+        </Canvas>
+
+        <!-- Platypus Adult -->
+        <Canvas x:Key="PlatypusAdult" Width="100" Height="100">
             <Ellipse Fill="#8B4513" Width="60" Height="30" Canvas.Left="20" Canvas.Top="35"/>
             <Ellipse Fill="#8B4513" Width="25" Height="20" Canvas.Left="10" Canvas.Top="40"/>
             <Ellipse Fill="#4A8FB5" Width="30" Height="12" Canvas.Left="5" Canvas.Top="43"/>
             <Rectangle Fill="#4A4A4A" Width="15" Height="20" Canvas.Left="72" Canvas.Top="60"/>
         </Canvas>
 
-        <!-- Shark -->
-        <Canvas x:Key="Shark" Width="100" Height="100">
+        <!-- Shark Baby -->
+        <Canvas x:Key="SharkBaby" Width="100" Height="100">
+            <Ellipse Fill="#4A6FA5" Width="60" Height="26" Canvas.Left="20" Canvas.Top="37"/>
+            <Polygon Fill="#4A6FA5" Points="80,50 90,33 90,67"/>
+            <Polygon Fill="#4A6FA5" Points="50,37 58,18 66,37"/>
+            <Ellipse Fill="White" Width="8" Height="6" Canvas.Left="22" Canvas.Top="46"/>
+            <Polygon Fill="White" Points="15,56 23,64 15,64"/>
+        </Canvas>
+
+        <!-- Shark Adult -->
+        <Canvas x:Key="SharkAdult" Width="100" Height="100">
             <Ellipse Fill="#4A6FA5" Width="80" Height="35" Canvas.Left="10" Canvas.Top="32"/>
             <Polygon Fill="#4A6FA5" Points="90,50 100,30 100,70"/>
             <Polygon Fill="#4A6FA5" Points="50,32 60,10 70,32"/>
@@ -76,8 +148,17 @@
             <Polygon Fill="White" Points="10,55 20,65 10,65"/>
         </Canvas>
 
-        <!-- Squirrel -->
-        <Canvas x:Key="Squirrel" Width="100" Height="100">
+        <!-- Squirrel Baby -->
+        <Canvas x:Key="SquirrelBaby" Width="100" Height="100">
+            <Ellipse Fill="#808080" Width="22" Height="22" Canvas.Left="39" Canvas.Top="33"/>
+            <Ellipse Fill="#808080" Width="25" Height="30" Canvas.Left="37" Canvas.Top="57"/>
+            <Ellipse Fill="#A0A0A0" Width="30" Height="22" Canvas.Left="35" Canvas.Top="15"/>
+            <Ellipse Fill="#808080" Width="6" Height="6" Canvas.Left="40" Canvas.Top="18"/>
+            <Ellipse Fill="#808080" Width="6" Height="6" Canvas.Left="54" Canvas.Top="18"/>
+        </Canvas>
+
+        <!-- Squirrel Adult -->
+        <Canvas x:Key="SquirrelAdult" Width="100" Height="100">
             <Ellipse Fill="#808080" Width="30" Height="30" Canvas.Left="35" Canvas.Top="30"/>
             <Ellipse Fill="#808080" Width="35" Height="40" Canvas.Left="33" Canvas.Top="55"/>
             <Ellipse Fill="#A0A0A0" Width="40" Height="30" Canvas.Left="30" Canvas.Top="10"/>

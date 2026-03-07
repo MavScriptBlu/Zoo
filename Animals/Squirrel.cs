@@ -13,8 +13,13 @@ namespace Animals
         /// <param name="name">The name of the animal.</param>
         /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
-        public Squirrel(string name, int age, double weight, Gender gender)
-            : base(name, age, weight, gender)
+        public Squirrel(string name, double weight, Gender gender)
+            : this(0, name, weight, gender)
+        {
+        }
+
+        public Squirrel(int age, string name, double weight, Gender gender)
+            : base(age, name, weight, gender)
         {
             this.BabyWeightPercentage = 17.0;
         }
@@ -25,6 +30,7 @@ namespace Animals
         public override void Move()
         {
             // Climb and scurry.
+            base.Move();
         }
     }
 }

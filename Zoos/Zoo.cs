@@ -100,10 +100,15 @@ namespace Zoos
             this.cages = new List<Cage>();
 
             // Create a cage for each animal type.
-            foreach (AnimalType animalType in Enum.GetValues(typeof(AnimalType)))
-            {
-                this.cages.Add(new Cage(animalType, 800, 400));
-            }
+            this.cages.Add(new Cage(typeof(Chimpanzee), 800, 400));
+            this.cages.Add(new Cage(typeof(Dingo), 800, 400));
+            this.cages.Add(new Cage(typeof(Eagle), 800, 400));
+            this.cages.Add(new Cage(typeof(Hummingbird), 800, 400));
+            this.cages.Add(new Cage(typeof(Kangaroo), 800, 400));
+            this.cages.Add(new Cage(typeof(Ostrich), 800, 400));
+            this.cages.Add(new Cage(typeof(Platypus), 800, 400));
+            this.cages.Add(new Cage(typeof(Shark), 800, 400));
+            this.cages.Add(new Cage(typeof(Squirrel), 800, 400));
         }
 
         /// <summary>
@@ -380,7 +385,7 @@ namespace Zoos
 
             foreach (Cage cage in this.cages)
             {
-                if (this.ConvertAnimalTypeToType(cage.AnimalType) == type)
+                if (cage.AnimalType == type)
                 {
                     result = cage;
                     break;
@@ -473,55 +478,5 @@ namespace Zoos
             return zoo;
         }
 
-        /// <summary>
-        /// Converts an AnimalType enum value to its corresponding Type.
-        /// </summary>
-        /// <param name="animalType">The animal type to convert.</param>
-        /// <returns>The corresponding Type.</returns>
-        private Type ConvertAnimalTypeToType(AnimalType animalType)
-        {
-            Type result = null;
-
-            switch (animalType)
-            {
-                case AnimalType.Chimpanzee:
-                    result = typeof(Chimpanzee);
-                    break;
-
-                case AnimalType.Dingo:
-                    result = typeof(Dingo);
-                    break;
-
-                case AnimalType.Eagle:
-                    result = typeof(Eagle);
-                    break;
-
-                case AnimalType.Hummingbird:
-                    result = typeof(Hummingbird);
-                    break;
-
-                case AnimalType.Kangaroo:
-                    result = typeof(Kangaroo);
-                    break;
-
-                case AnimalType.Ostrich:
-                    result = typeof(Ostrich);
-                    break;
-
-                case AnimalType.Platypus:
-                    result = typeof(Platypus);
-                    break;
-
-                case AnimalType.Shark:
-                    result = typeof(Shark);
-                    break;
-
-                case AnimalType.Squirrel:
-                    result = typeof(Squirrel);
-                    break;
-            }
-
-            return result;
-        }
     }
 }

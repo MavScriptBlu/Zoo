@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using Animals;
 using CagedItems;
 
 namespace Zoos
@@ -20,7 +20,7 @@ namespace Zoos
         /// <param name="animalType">The type of animal in the cage.</param>
         /// <param name="width">The width of the cage.</param>
         /// <param name="height">The height of the cage.</param>
-        public Cage(AnimalType animalType, int width, int height)
+        public Cage(Type animalType, int width, int height)
         {
             this.AnimalType = animalType;
             this.Width = width;
@@ -31,7 +31,7 @@ namespace Zoos
         /// <summary>
         /// Gets the type of animal in the cage.
         /// </summary>
-        public AnimalType AnimalType { get; private set; }
+        public Type AnimalType { get; private set; }
 
         /// <summary>
         /// Gets the width of the cage.

@@ -245,9 +245,9 @@ namespace ZooConsole
                 Ticket ticket = zoo.SellTicket(guest);
                 zoo.AddGuest(guest, ticket);
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Zoo is out of tickets.");
                 return;
             }
             catch (MissingItemException ex)

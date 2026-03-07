@@ -23,39 +23,39 @@ namespace Animals
             switch (type)
             {
                 case AnimalType.Chimpanzee:
-                    result = new Chimpanzee(name, age, weight, gender);
+                    result = new Chimpanzee(age, name, weight, gender);
                     break;
 
                 case AnimalType.Dingo:
-                    result = new Dingo(name, age, weight, gender);
+                    result = new Dingo(age, name, weight, gender);
                     break;
 
                 case AnimalType.Eagle:
-                    result = new Eagle(name, age, weight, gender);
+                    result = new Eagle(age, name, weight, gender);
                     break;
 
                 case AnimalType.Hummingbird:
-                    result = new Hummingbird(name, age, weight, gender);
+                    result = new Hummingbird(age, name, weight, gender);
                     break;
 
                 case AnimalType.Kangaroo:
-                    result = new Kangaroo(name, age, weight, gender);
+                    result = new Kangaroo(age, name, weight, gender);
                     break;
 
                 case AnimalType.Ostrich:
-                    result = new Ostrich(name, age, weight, gender);
+                    result = new Ostrich(age, name, weight, gender);
                     break;
 
                 case AnimalType.Platypus:
-                    result = new Platypus(name, age, weight, gender);
+                    result = new Platypus(age, name, weight, gender);
                     break;
 
                 case AnimalType.Shark:
-                    result = new Shark(name, age, weight, gender);
+                    result = new Shark(age, name, weight, gender);
                     break;
 
                 case AnimalType.Squirrel:
-                    result = new Squirrel(name, age, weight, gender);
+                    result = new Squirrel(age, name, weight, gender);
                     break;
             }
 

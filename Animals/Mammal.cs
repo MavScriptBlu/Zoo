@@ -14,11 +14,22 @@ namespace Animals
         /// Initializes a new instance of the Mammal class.
         /// </summary>
         /// <param name="name">The name of the animal.</param>
-        /// <param name="age">The age of the animal.</param>
         /// <param name="weight">The weight of the animal (in pounds).</param>
         /// <param name="gender">The gender of the animal.</param>
-        public Mammal(string name, int age, double weight, Gender gender)
-            : base(name, age, weight, gender)
+        public Mammal(string name, double weight, Gender gender)
+            : base(name, weight, gender)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Mammal class.
+        /// </summary>
+        /// <param name="age">The age of the animal.</param>
+        /// <param name="name">The name of the animal.</param>
+        /// <param name="weight">The weight of the animal (in pounds).</param>
+        /// <param name="gender">The gender of the animal.</param>
+        public Mammal(int age, string name, double weight, Gender gender)
+            : base(age, name, weight, gender)
         {
         }
 
@@ -41,22 +52,26 @@ namespace Animals
             // Pace left or right.
             if (this.XDirection == HorizontalDirection.Right)
             {
-                this.XPosition += this.MoveDistance;
-
-                if (this.XPosition >= this.XPositionMax)
+                if (this.XPosition + this.MoveDistance > this.XPositionMax)
                 {
                     this.XPosition = this.XPositionMax;
                     this.XDirection = HorizontalDirection.Left;
                 }
+                else
+                {
+                    this.XPosition += this.MoveDistance;
+                }
             }
             else
             {
-                this.XPosition -= this.MoveDistance;
-
-                if (this.XPosition <= 0)
+                if (this.XPosition - this.MoveDistance < 0)
                 {
                     this.XPosition = 0;
                     this.XDirection = HorizontalDirection.Right;
+                }
+                else
+                {
+                    this.XPosition -= this.MoveDistance;
                 }
             }
         }

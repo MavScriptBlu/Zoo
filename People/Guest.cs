@@ -61,6 +61,8 @@ namespace People
             this.wallet = new Wallet();
             this.checkingAccount = account;
             this.bag = new List<Item>();
+            this.XPosition = 400;
+            this.YPosition = 200;
         }
 
         /// <summary>
@@ -140,12 +142,12 @@ namespace People
         /// <summary>
         /// Gets or sets the horizontal position of the guest.
         /// </summary>
-        public double XPosition { get; set; }
+        public int XPosition { get; set; }
 
         /// <summary>
         /// Gets or sets the vertical position of the guest.
         /// </summary>
-        public double YPosition { get; set; }
+        public int YPosition { get; set; }
 
         /// <summary>
         /// Gets the display size of the guest.
@@ -296,7 +298,8 @@ namespace People
         /// <returns>A string representation of the guest.</returns>
         public override string ToString()
         {
-            return string.Format("{0}: {1} [${2:0.00} / ${3:0.00}]", this.name, this.age, this.wallet.MoneyBalance, this.checkingAccount.MoneyBalance);
+            string adoptedAnimalName = this.AdoptedAnimal == null ? string.Empty : string.Format(" [{0}]", this.AdoptedAnimal.Name);
+            return string.Format("{0}: {1} [${2:0.00} / ${3:0.00}]{4}", this.name, this.age, this.wallet.MoneyBalance, this.checkingAccount.MoneyBalance, adoptedAnimalName);
         }
     }
 }

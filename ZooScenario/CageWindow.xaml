@@ -6,9 +6,8 @@
         Loaded="window_Loaded"
         Closing="window_Closing">
     <Grid>
-        <Canvas x:Name="animalCanvas" Background="LightGreen"
-                Width="800" Height="400"
-                HorizontalAlignment="Left" VerticalAlignment="Top"
-                Margin="10,10,0,0" ClipToBounds="True"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="10,10,10,10">
+            <Grid x:Name="cageGrid" Background="LightGreen" ClipToBounds="True"/>
+        </Border>
     </Grid>
 </Window>
